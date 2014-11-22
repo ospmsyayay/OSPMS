@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width-device-width, initial-scale-1.0">
+		<title>Tunasan Elementary School</title>
+		<link href="css/bootstrap.min.css"rel="stylesheet">    
+    <link rel="stylesheet" href="css/custom.css" type="text/css"/>
+    <style>
+    </style>
+    <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</head>	
+
+<div class="btn-group btn-group-justified">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Left</button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Middle</button>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Right</button>
+  </div>
+</div>
+
+
+</html>
