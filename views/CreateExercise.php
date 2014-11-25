@@ -107,8 +107,36 @@
 		<?php
 				}
 				
+		
+		?>
+		
+		<?php 
+		
+			
+			if($_GET['chc']=="mat")
+				{			
+		
+		?>
+		<hr/>
+		<div id="choice">
+					
+					Question 1:
+					<br/>
+					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>Correct Answer:
+					<br/>
+					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+					
+		</div>
+		
+		<?php
+				}
+				
 			}
 		?>
+		
 		
 				
 			<!--		
