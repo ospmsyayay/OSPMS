@@ -357,63 +357,37 @@
 								
 								</div>
 								<div class="tab-pane fade" id="lecture-exercises">
-										<div class="btn_align">
-											
-												<div class="ui-group-buttons">
-														<button type="button" class="btn btn-primary btn-lg" >Post Lecture</button>
-														<div class="or or-lg"></div>
-														<button type="button" class="btn btn-success btn-lg" onclick="window.location.href='index.php?request=createexer'">Create Exercises</button>
-												<!--<a class="btn btn-success" href="index.php?request=login" role="button" id="dummy-button">Login</a>-->
-												</div>
-										</div>
+									<div class="btn_align">
 									
-										<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-													<div class="modal-dialog">
-														<div class="modal-content">
+										<button type="button" class="btn btn-default btn-cons" onclick="window.location.href='index.php?request=createexer'">Create Exercises</button>
+										
+										<br/>
+										
+										<input type="file" id="files" name="files[]" multiple />
+										<output id="list"></output>
 
-															<div class="modal-header">
-															  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-															  <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
-															</div>
-															
-															<div class="modal-body">
-															  <h4>Text in a modal</h4>
-															  <p></p>
+										<script>
+										  function handleFileSelect(evt) {
+											var files = evt.target.files; // FileList object
 
-															  <h4>Popover in a modal</h4>
-															  <p>This <a href="#" role="button" class="btn btn-default js-popover" title="" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A Title">button</a> should trigger a popover on click.</p>
+											// files is a FileList of File objects. List some properties.
+											var output = [];
+											for (var i = 0, f; f = files[i]; i++) {
+											  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+														  f.size, ' bytes, last modified: ',
+														  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+														  '</li>');
+											}
+											document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+										  }
 
-															  <h4>Tooltips in a modal</h4>
-															  <p><a href="#" class="js-tooltip" title="" data-original-title="Tooltip">This link</a> and <a href="#" class="js-tooltip" title="" data-original-title="Tooltip">that link</a> should have tooltips on hover.</p>
-
-															  <hr>
-
-															  <h4>Overflowing text to show scroll behavior</h4>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															  <p></p>
-															</div>
-															
-															<div class="modal-footer">
-															  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-															  <button type="button" class="btn btn-primary">Save changes</button>
-															</div>
-
-														</div>
-													</div>
-										</div>
-
-												  <!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-													Launch demo modal
-												  </button>-->
+										  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+										</script>									
+										
+									</div>
 								  
-								</div>
+								</div>  
+								 
 								
 								<div class="tab-pane fade" id="attendance-sheet">
 									<!--<img src="views/res/attendance.png" class="img-rounded shadow attendance" />-->	
