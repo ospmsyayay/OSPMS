@@ -1033,9 +1033,9 @@ border: 2px solid #009;
 	margin-left:450px;
 }
 
-.questionModel
+.questionModel, .choicesModel, .correctModel
 {
-	background-color: #f6ebf0;
+	background-color: #87CEEB;
 	border-radius: 10px;
 	border: 1px solid #222;
 	font-size: 16px;

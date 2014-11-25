@@ -18,6 +18,7 @@ else
 		case 'tpage_encode':tpage_encode();break;
 		case 'spage':spage();break;
 		case 'ppage':ppage();break;
+		case 'createexer':createexer(); break;	
 		//case 'login': login();break;
 		case 'logSuccess':
 								if((!isset($_SESSION['username']))&&(!isset($_SESSION['user_type']))){
@@ -33,7 +34,7 @@ else
 								}
 								break;
 								
-		case 'createexer':createexer(); break;					
+					
 		default: header("Location: index.php");
 	}
 }
@@ -129,8 +130,39 @@ function ppage()
 function createexer()
 {
 
-	include "views/CreateExercise.php";
 
+		if ($_SERVER["REQUEST_METHOD"] == "POST") 
+		{
+			
+			
+			include "model/online_exercise.php";
+			
+			$question=$answer=$fetchID="";
+			$question = $_POST['question'];
+			$answer = $_POST['answer'];
+			
+			$insertok=insert_quiz($question, $answer);
+	
+			$fetchID = get_questionID($question, $answer);
+			$row = mysqli_fetch_row($fetchID);
+					
+			$convertFetchID = $row[0];
+			
+			foreach($_POST['choices'] as $choices)
+			{
+			  $insert_success=insert_choices( $convertFetchID,$choices);
+			  
+			  if($insert_success)
+			  {
+				header("Location:index.php?request=createexer&os");
+			  }
+			}
+			
+			
+		}
+
+	include "views/CreateExercise.php";
+	
 }
 
 /*
