@@ -35,15 +35,81 @@
 					<br/>
 					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
 					<br/>
+					<br/>
+					<br/>Correct Answer:
+					<br/>
+					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>Wrong Answer:
+					<br/>
+					<input placeholder="Wrong Answer1" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>
+					<input placeholder="Wrong Answer2" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>
+					<input placeholder="Wrong Answer3" name="question[]" class="questionModel" type="text" />
+					<br/>
 					
 					
 		</div>
 		
 		<?php 
 				}
-			}								
+			
+			if($_GET['chc']=="tr")
+				{			
 		
-		?>		
+		?>
+		<hr/>
+		<div id="choice">
+					
+					Question 1:
+					<br/>
+					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>Correct Answer:
+					<br/>
+					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+					
+		</div>
+		
+		<?php
+				}
+				
+		?>
+		
+		<?php 
+		
+			
+			if($_GET['chc']=="fill")
+				{			
+		
+		?>
+		<hr/>
+		<div id="choice">
+					
+					Question 1:
+					<br/>
+					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
+					<br/>
+					<br/>
+					<br/>Correct Answer:
+					<br/>
+					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+					
+		</div>
+		
+		<?php
+				}
+				
+			}
+		?>
+		
 				
 			<!--		
 					Question 2:<BR><TEXTAREA cols=64 name=q2 wrap=physical>Do I have to fill in all the choices?</TEXTAREA>
