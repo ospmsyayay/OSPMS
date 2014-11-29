@@ -231,12 +231,18 @@ input[type="text"]
 	}
 input[type="text"]:focus
 {
-	border-color:blue;
+	background-color:white;
 }
 input[type="text"]:hover 
 {
-background-color: #d0e2f0;
-border: .5px solid #999;
+
+border: 1px solid #66afe9;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 input[type="password"]
@@ -249,12 +255,17 @@ input[type="password"]
 	}
 input[type="password"]:focus
 {
-	border-color:blue;
+	background-color:white;
 }
 input[type="password"]:hover 
 {
-background-color: #d0e2f0;
-border: .5px solid #999;
+border: 1px solid #66afe9;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 input[type="submit"] 
@@ -885,6 +896,8 @@ width: 600px;
 {
 width: 600px;
 }
+
+
 /** Post Lecture - Create Exercise**/
 .ui-group-buttons .or{position:relative;float:left;width:.3em;height:1.3em;z-index:3;font-size:12px}
 .ui-group-buttons .or:before{position:absolute;top:50%;left:50%;content:'or';background-color:#5a5a5a;margin-top:-.1em;margin-left:-.9em;width:1.8em;height:1.8em;line-height:1.55;color:#fff;font-style:normal;font-weight:400;text-align:center;border-radius:500px;-webkit-box-shadow:0 0 0 1px rgba(0,0,0,0.1);box-shadow:0 0 0 1px rgba(0,0,0,0.1);-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
@@ -917,6 +930,8 @@ text-align: center;
 }
 
 .btn-primary.btn-outline:hover,
+
+
 
 /** Login - Clear**/
 .btn{
@@ -1066,6 +1081,33 @@ border: 2px solid #009;
 	
 	
 }
+
+/*Create Exercise Multiple Choice*/
+/*
+#multi-next
+{
+
+position:relative;
+left:100px;
+
+
+}
+
+#multi-save
+{
+
+
+
+}
+
+#multi-discard
+{
+
+
+
+
+}
+*/
 /************************** [ PARTS - FOOTER ] **************************/
 /**
 #footer-div

@@ -18,7 +18,7 @@
 		function check()
 		{
 		<?php
-			if ($_GET['prompt']=="success")
+			if ($_GET['p']=="success")
 			{								
 		?>
 				alert('Login Successful');
@@ -47,14 +47,14 @@
 					  </div>
 					  
                     <ul class="nav navbar-nav">
-                        <li>
-    						<a class="navbar-brand" href="index.php?request=tpage">Home</a>
+                       <li>
+    						<a class="navbar-brand" href="index.php?r=lss">Home</a>
     					</li>
     					<li>
-    						<a class="navbar-brand" href="index.php?request=tpage_progress">Progress</a>
+    						<a class="navbar-brand" href="index.php?r=lss&pt=ptp">Progress</a>
     					</li>
                         <li>
-    						<a class="navbar-brand" href="index.php?request=tpage_encode">Encode</a>
+    						<a class="navbar-brand" href="index.php?r=lss&pt=pte">Encode</a>
     					</li>
                         <li>
     						<a class="navbar-brand" href="#">Reports</a>

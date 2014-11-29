@@ -1,39 +1,93 @@
 <?php
 
-function insert_quiz($question, $answer){
-		include "config/conn.php";
-		
-		$sql="INSERT INTO ol_exer_multiple_choice
-			VALUES('0','".$question."','".$answer."')";
+
+function create_exercise($desc)
+{
+
+	include "config/conn.php";
+
+	$selectTypeID="Select typeID from ol_exercise_type where type_desc LIKE'$desc%'";
+	$getTypeID=mysqli_query($cxn,$selectTypeID);
+	$row = mysqli_fetch_row($getTypeID);
+	$typeID = $row[0];
+
+	$sql="INSERT INTO create_ol_exercise
+		VALUES('0','".$typeID."')";
 						
-		$successful= mysqli_query($cxn,$sql);
-		
-		return $successful;
+	$create_exercise_inserted= mysqli_query($cxn,$sql);
+
 	
+	$exerciseId="";
+	if($create_exercise_inserted)
+	{
+		$selectExerciseId="select exerciseID from create_ol_exercise where typeID = '".$typeID."'";
+		$getExerciseId=mysqli_query($cxn,$selectExerciseId);
+		$row = mysqli_fetch_row($getExerciseId);
+		$exerciseId = $row[0];
+	}
+
+	
+	$update_create_questions="UPDATE create_questions SET exerciseID='".$exerciseId."'";
+	$update_successful=mysqli_query($cxn,$update_create_questions);
+	
+	return $update_successful;
  	
-}
 
-function get_questionID($question, $answer)
-{
-include "config/conn.php";
-
-$sql="Select oemc_ID from ol_exer_multiple_choice where oemc_question = '" .$question. "' AND oemc_correct = '". $answer."'";
-
-$fetchID = mysqli_query($cxn,$sql);
-
-	return $fetchID;
 }
 
 
-function insert_choices( $questionID,$choices)
+function create_questions($question,$answer)
+{
+
+include "config/conn.php";
+$questionNo="";
+
+$sql="INSERT INTO create_questions
+		VALUES('0',NULL,'".$question."','".$answer."')";
+					
+	$question_inserted= mysqli_query($cxn,$sql);
+
+	if($question_inserted)
+	{
+		$selectQuestionNo="select questionNo from create_questions where
+		oe_question='".$question."' and oe_correct='".$answer."'";
+		$getQuestionNo=mysqli_query($cxn,$selectQuestionNo);
+		$row = mysqli_fetch_row($getQuestionNo);
+		$questionNo = $row[0];
+	}
+	
+	return $questionNo;
+
+}
+
+function create_choices( $questionNo,$choices)
 {
 include "config/conn.php";
 
-$sql="INSERT INTO oemc_choice VALUES('0','".$questionID."','".$choices."')";
+$sql="INSERT INTO oe_choices  VALUES('".$questionNo."','".$choices."')";
 	
-$insert_choices = mysqli_query($cxn,$sql);
+$choices_created = mysqli_query($cxn,$sql);
 	
-	return $insert_choices;  	
+	return $choices_created;  	
+
+}
+
+function discard_questions($questionNo)
+{
+
+include "config/conn.php";
+
+$questions_discarded="";
+$discard_choices="DELETE FROM oe_choices where questionNo='".$questionNo."'";
+$choices_discarded= mysqli_query($cxn,$discard_choices);
+
+if($choices_discarded)
+{
+	$discard_questions="DELETE FROM create_questions where questionNo='".$questionNo."'";
+	$questions_discarded= mysqli_query($cxn,$discard_questions);
+}
+
+	return $questions_discarded;
 
 }
 

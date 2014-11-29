@@ -33,14 +33,14 @@
 					  </div>
 					  
                     <ul class="nav navbar-nav">
-                        <li>
-    						<a class="navbar-brand" href="index.php?request=tpage">Home</a>
+                       <li>
+    						<a class="navbar-brand" href="index.php?r=lss">Home</a>
     					</li>
     					<li>
-    						<a class="navbar-brand" href="index.php?request=tpage_progress">Progress</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=trp">Progress</a>
     					</li>
                         <li>
-    						<a class="navbar-brand" href="index.php?request=tpage_encode">Encode</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=tre">Encode</a>
     					</li>
                         <li>
     						<a class="navbar-brand" href="#">Reports</a>

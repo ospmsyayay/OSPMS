@@ -13,52 +13,70 @@
 		<script>
 		function check()
 		{
+		
 		<?php
-			if (isset($_GET['os']))
-			{								
+		
+		
+		if(isset($_GET['os']))
+			{
 		?>
 				alert('Multiple Choice Saved');
-		<?php					
+		<?php
+				
+			}
+			
+			else if (isset($_GET['rm']))
+			{
+		?>
+				alert('Multiple Choice Discarded!');
+		<?php		
 			}
 		?>
 		}
 		</script>
 	
 		<div class="btn-group" id="createExerMenuHandler" data-toggle="buttons-radio">
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?request=createexer&chc=multi'">Multiple Choice</button>
+		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=mic'">Multiple Choice</button>
 		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?request=createexer&chc=tr'">True or False</button>
+		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=te'">True or False</button>
 		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?request=createexer&chc=mat'">Matching Type</button>
+		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=me'">Matching Type</button>
 		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?request=createexer&chc=fill'">Fill in the blank</button>
+		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=fs'">Fill in the blank</button>
 		</div>
 		
 		<?php
 			
-			if (isset($_GET['chc']))
+			if (isset($_GET['cc']))
 			{
-				if($_GET['chc']=="multi")
+				if($_GET['cc']=="mic")
 				{
+					
 		?>
 		<hr/>
 		<div id="choice">
-				<form method="post" action="" role="form">	
-					Question 1:
+				<form method="post" action="" role="form">
+					
+				
+					Question <?php 
+				
+						echo $_SESSION['question_no'];
+		
+					?>:
+
 					<br/>
 					<input placeholder="Question" name="question" class="questionModel" type="text" />
 					<br/>
 					<br/>
 					<br/>
-					Choices:
 					
+					Choices:
 					<?php 
 					$rows=5;
 					$counter=0;
 					while($counter<5)
 					{
 					?>
-
 					<br/>
 					<br/>
 					<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
@@ -74,17 +92,29 @@
 					<br/>
 					<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
 					<br/>
+					
 					<br/>
 					<br/>
-					<button type="submit" class="btn btn-fresh text-uppercase" onclick="window.location.href='index.php?request=createexer'">
-					Create Multiple Choice</button>
+					<div class="multi-holder">
+					
+					<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+					<?php
+					if(isset($_GET['nq']))
+					{
+					?>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+					<?php
+					}
+					?>
+					</div>	
 				</form>	
 		</div>
 		
 		<?php 
 				}
 			
-			if($_GET['chc']=="tr")
+			if($_GET['cc']=="te")
 				{			
 		
 		?>
@@ -107,7 +137,7 @@
 		<?php
 				}
 				
-			if($_GET['chc']=="fill")
+			if($_GET['cc']=="fs")
 				{			
 		
 		?>
@@ -129,14 +159,14 @@
 				}
 				
 
-			if($_GET['chc']=="mat")
+			if($_GET['cc']=="me")
 				{			
 		
 		?>
 		<hr/>
 		<div id="matching">
 					
-					Question 1:
+					Question :
 					<br/>
 					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
 					<br/>
@@ -156,6 +186,7 @@
 		
 		
 <script src="jquery-1.11.1.js"></script>
-<script type="views/events.js"></script>
+<script src="views/events.js"></script>
+
 	</body>
 </html>

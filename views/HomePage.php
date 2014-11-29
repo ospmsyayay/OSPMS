@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         
 		<title>Online Student Performance Monitoring System</title>
-        <!--<link rel="stylesheet" type="text/css" href="views/bootstrap.min.css"/>-->
+        
         <link href="views/carousel.css" rel="stylesheet"/>
 		<link href="views/bootstrap.css" rel="stylesheet"/>
         <link href="views/exDesign.css" rel="stylesheet"/>
@@ -141,17 +141,19 @@
 									<form method="post" class="form-horizontal" role="form">
 									<div class="form-group">
 										<label for="username" class="title">Username:</label>
-										<input type="text" id="username" name="user" class="form-control" placeholder="Enter username"/>
+										<input type="text" id="username" name="user" class="form-control" placeholder="Enter username" required="required"/>
 									</div>
 									<div class="form-group">
 										<label for="password" class="title">Password:</label>
-										<input type="password" id="password" name="pass" class="form-control" placeholder="Enter password"/>
+										<input type="password" id="password" name="pass" class="form-control" placeholder="Enter password" required="required"/>
 									</div>
 									<div class="home_btn">
-											<button type="submit" class="btn btn-fresh text-uppercase" id="submit" href="index.php?request=login">Login</button>
-											<button type="reset" class="btn btn-sky text-uppercase">Clear</button>
-										<!--<a class="btn btn-success" href="index.php?request=login" role="button" id="dummy-button">Login</a>-->
+										
+											<button type="submit" class="btn btn-fresh text-uppercase" id="submit">Login</button>
+											<button type="reset" class="btn btn-sky text-uppercase" >Clear</button>
+				
 									</div>
+									</form>
 								</fieldset>
 						</div>						
 					</div> 

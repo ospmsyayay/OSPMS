@@ -18,7 +18,7 @@
 		function check()
 		{
 		<?php
-			if ($_GET['prompt']=="success")
+			if (isset($_GET['ss']))
 			{								
 		?>
 				alert('Login Successful');
@@ -48,13 +48,13 @@
 					  
                     <ul class="nav navbar-nav">
                         <li>
-    						<a class="navbar-brand" href="index.php?request=tpage">Home</a>
+    						<a class="navbar-brand" href="index.php?r=lss">Home</a>
     					</li>
     					<li>
-    						<a class="navbar-brand" href="index.php?request=tpage_progress">Progress</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=trp">Progress</a>
     					</li>
                         <li>
-    						<a class="navbar-brand" href="index.php?request=tpage_encode">Encode</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=tre">Encode</a>
     					</li>
                         <li>
     						<a class="navbar-brand" href="#">Reports</a>
@@ -359,31 +359,13 @@
 								<div class="tab-pane fade" id="lecture-exercises">
 									<div class="btn_align">
 									
-										<button type="button" class="btn btn-default btn-cons" onclick="window.location.href='index.php?request=createexer'">Create Exercises</button>
+										<button type="button" class="btn btn-default btn-cons" onclick="window.location.href='index.php?r=lss&tr=ce'">Create Exercises</button>
 										
 										<br/>
 										
 										<input type="file" id="files" name="files[]" multiple />
 										<output id="list"></output>
 
-										<script>
-										  function handleFileSelect(evt) {
-											var files = evt.target.files; // FileList object
-
-											// files is a FileList of File objects. List some properties.
-											var output = [];
-											for (var i = 0, f; f = files[i]; i++) {
-											  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-														  f.size, ' bytes, last modified: ',
-														  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-														  '</li>');
-											}
-											document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-										  }
-
-										  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-										</script>									
-										
 									</div>
 								  
 								</div>  
@@ -464,7 +446,25 @@ $(function () {
   $('.js-popover').popover()
   $('.js-tooltip').tooltip()
 })
-</script>		
+</script>
+
+<script>
+  function handleFileSelect(evt) {
+	var files = evt.target.files; // FileList object
+
+	// files is a FileList of File objects. List some properties.
+	var output = [];
+	for (var i = 0, f; f = files[i]; i++) {
+	  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+				  f.size, ' bytes, last modified: ',
+				  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+				  '</li>');
+	}
+	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>					
 	</body>
     
     
