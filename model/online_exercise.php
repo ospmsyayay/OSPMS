@@ -1,18 +1,19 @@
 <?php
 
 
-function create_exercise($desc)
+function create_exercise($exerciseName,$desc,$date_created,$question_date_created)
 {
 
 	include "config/conn.php";
 
+	$typeID="";
 	$selectTypeID="Select typeID from ol_exercise_type where type_desc LIKE'$desc%'";
 	$getTypeID=mysqli_query($cxn,$selectTypeID);
 	$row = mysqli_fetch_row($getTypeID);
 	$typeID = $row[0];
 
 	$sql="INSERT INTO create_ol_exercise
-		VALUES('0','".$typeID."')";
+		VALUES('0','".$typeID."','".$exerciseName."','".$date_created."')";
 						
 	$create_exercise_inserted= mysqli_query($cxn,$sql);
 
@@ -20,14 +21,14 @@ function create_exercise($desc)
 	$exerciseId="";
 	if($create_exercise_inserted)
 	{
-		$selectExerciseId="select exerciseID from create_ol_exercise where typeID = '".$typeID."'";
+		$selectExerciseId="select exerciseID from create_ol_exercise where typeID = '".$typeID."' AND exerciseName='".$exerciseName."' AND date_created='".$date_created."'";
 		$getExerciseId=mysqli_query($cxn,$selectExerciseId);
 		$row = mysqli_fetch_row($getExerciseId);
 		$exerciseId = $row[0];
 	}
 
 	
-	$update_create_questions="UPDATE create_questions SET exerciseID='".$exerciseId."'";
+	$update_create_questions="UPDATE create_questions SET exerciseID='".$exerciseId."' WHERE date_created='".$question_date_created."'";
 	$update_successful=mysqli_query($cxn,$update_create_questions);
 	
 	return $update_successful;
@@ -36,21 +37,21 @@ function create_exercise($desc)
 }
 
 
-function create_questions($question,$answer)
+function create_questions($question,$answer,$question_date_created)
 {
 
 include "config/conn.php";
 $questionNo="";
 
 $sql="INSERT INTO create_questions
-		VALUES('0',NULL,'".$question."','".$answer."')";
+		VALUES('0',NULL,'".$question."','".$answer."','".$question_date_created."')";
 					
 	$question_inserted= mysqli_query($cxn,$sql);
 
 	if($question_inserted)
 	{
 		$selectQuestionNo="select questionNo from create_questions where
-		oe_question='".$question."' and oe_correct='".$answer."'";
+		oe_question='".$question."' and oe_correct='".$answer."' and '".$question_date_created."'";
 		$getQuestionNo=mysqli_query($cxn,$selectQuestionNo);
 		$row = mysqli_fetch_row($getQuestionNo);
 		$questionNo = $row[0];

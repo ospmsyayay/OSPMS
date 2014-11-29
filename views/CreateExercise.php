@@ -79,43 +79,43 @@
 		<div class="center-exercise">
 				<form method="post" action="" role="form">
 					
-				
-					Question <?php 
-				
+						<label>Exercise Name:</label>
+						<br/>
+						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
+						value=""/>
+						<br/>
+						<br/>
+						<br/>
+						
+						<label>Question </label>
+						<?php 
 						//echo $_SESSION['question_no'];
-		
 					?>:
-
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
 						<br/>
 						<br/>
-					
-					Choices:
+					<label>Choices:</label>
 					<?php 
-					$rows=5;
+					$rows=4;
 					$counter=0;
-					while($counter<5)
+					while($counter<4)
 					{
 					?>
 						<br/>
-						<br/>
 						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
 						<br/>
 					
 					<?php 
 					$counter++;
 					}
 					?>
-
 						<br/>
-						<br/>Correct Answer:
+						<label>Correct Answer:
 						<br/>
-						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
-						<br/>
-						
-						<br/>
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" /></label>
 						<br/>
 						<div class="multi-holder">
 						
@@ -144,46 +144,55 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-					
-				
-					Question <?php 
-				
+							<label>Exercise Name:</label>
+						<br/>
+						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
+						value=""/>
+						<br/>
+						<br/>
+						<br/>
+						
+						<label>Question </label>
+						<?php 
 						//echo $_SESSION['question_no'];
-		
 					?>:
-
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
 						<br/>
 						<br/>
-					
-					Choices:
+					<label>Choices:</label>
 					<?php 
 					$rows=2;
 					$counter=0;
+					$value="";
 					while($counter<2)
 					{
+						if($counter==0)
+						{
+							$value="true";
+							
+						}
+						else
+						{
+							$value="false";
+						}
 					?>
 						<br/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" value="<?php $value; ?>" readonly="true"/>
 						<br/>
-						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
 						<br/>
 					
 					<?php 
 					$counter++;
 					}
 					?>
-
 						<br/>
-						<br/>Correct Answer:
+						<label>Correct Answer:
 						<br/>
-						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" /></label>
 						<br/>
-						
-						<br/>
-						<br/>
-					<div class="multi-holder">
+						<div class="multi-holder">
 					
 						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=te&n">Add Question +</button>
 					<?php
@@ -211,21 +220,24 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-					
-				
-					Question <?php 
-				
+							<label>Exercise Name:</label>
+						<br/>
+						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
+						value=""/>
+						<br/>
+						<br/>
+						<br/>
+						
+						<label>Question </label>
+						<?php 
 						//echo $_SESSION['question_no'];
-		
 					?>:
-
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
 						<br/>
 						<br/>
-					
-					Choices:
+					<label>Choices:</label>
 					<?php 
 					$rows=1;
 					$counter=0;
@@ -233,24 +245,20 @@
 					{
 					?>
 						<br/>
-						<br/>
 						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
 						<br/>
 					
 					<?php 
 					$counter++;
 					}
 					?>
-
 						<br/>
-						<br/>Correct Answer:
+						<label>Correct Answer:
 						<br/>
-						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" /></label>
 						<br/>
-						
-						<br/>
-						<br/>
-					<div class="multi-holder">
+						<div class="multi-holder">
 					
 						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=me&n">Add Question +</button>
 					<?php
@@ -279,21 +287,24 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-					
-				
-					Question <?php 
-				
+							<label>Exercise Name:</label>
+						<br/>
+						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
+						value=""/>
+						<br/>
+						<br/>
+						<br/>
+						
+						<label>Question </label>
+						<?php 
 						//echo $_SESSION['question_no'];
-		
 					?>:
-
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
 						<br/>
 						<br/>
-					
-					Choices:
+					<label>Choices:</label>
 					<?php 
 					$rows=1;
 					$counter=0;
@@ -301,24 +312,20 @@
 					{
 					?>
 						<br/>
-						<br/>
 						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
 						<br/>
 					
 					<?php 
 					$counter++;
 					}
 					?>
-
 						<br/>
-						<br/>Correct Answer:
+						<label>Correct Answer:
 						<br/>
-						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" /></label>
 						<br/>
-						
-						<br/>
-						<br/>
-					<div class="multi-holder">
+						<div class="multi-holder">
 					
 						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=fs&n">Add Question +</button>
 					<?php

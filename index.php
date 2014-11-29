@@ -204,24 +204,35 @@ function multiplechoice()
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		$insert_success;
+		$_SESSION['exerciseName']=$_POST['exerciseName'];
 		
+		 
 		if(isset($_GET['n']))
 		{
 			
-			$_SESSION['questionNo']=create_questions($question,$answer);
-	
-			foreach($_POST['choices'] as $choices)
+			if(empty($_SESSION['question_date_created']))
 			{
-			  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
+				
 			}
-			
-			if(!$insert_success)
+
+			else
 			{
-				//
-			}	
-			header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
-			exit;
-			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				}
+				
+				if(!$insert_success)
+				{
+					//
+				}	
+				header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
+				exit;
+			}
+	
 		}							
 		
 		if(isset($_GET['x']))
@@ -232,23 +243,30 @@ function multiplechoice()
 			{
 				//
 			}
+			$_SESSION['questionNo']=null;
+			$_SESSION['question_date_created']=null;
 			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
 			exit;
-			$_SESSION['questionNo']="";
+			
 		}
 		
 		if(isset($_GET['s']))
 		{	
 		//$_SESSION['question_no']=0;
-				$multi_created=create_exercise('multi');
+				$_SESSION['date_created']= date("Y-m-d H:i:s"); 
 				
+				$multi_created=create_exercise($_SESSION['exerciseName'],'multi',$_SESSION['date_created'],$_SESSION['question_date_created']);
 				if(!$multi_created)
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&cc=mic&ms");
+				
+				$_SESSION['questionNo']=null;
+				$_SESSION['question_date_created']=null;
+				$_SESSION['date_created']=null;
+				
+				header("Location:index.php?r=lss&tr=ce&ms");
 				exit;
-				$_SESSION['questionNo']="";
 			
 		}
 	
@@ -280,7 +298,7 @@ function trueorfalse()
 			{
 				//
 			}	
-			header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
+			header("Location:index.php?r=lss&tr=ce&cc=te&nq");
 			exit;
 			
 		}							
@@ -293,9 +311,9 @@ function trueorfalse()
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
+			header("Location:index.php?r=lss&tr=ce&cc=te&rm");
 			exit;
-			$_SESSION['questionNo']="";
+			//$_SESSION['questionNo']="";
 		}
 		
 		if(isset($_GET['s']))
@@ -307,9 +325,9 @@ function trueorfalse()
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&cc=mic&ts");
+				header("Location:index.php?r=lss&tr=ce&ts");
 				exit;
-				$_SESSION['questionNo']="";
+				//$_SESSION['questionNo']="";
 			
 		}
 
@@ -342,7 +360,7 @@ function matchingtype()
 			{
 				//
 			}	
-			header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
+			header("Location:index.php?r=lss&tr=ce&cc=me&nq");
 			exit;
 			
 		}							
@@ -355,9 +373,9 @@ function matchingtype()
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
+			header("Location:index.php?r=lss&tr=ce&cc=me&rm");
 			exit;
-			$_SESSION['questionNo']="";
+			//$_SESSION['questionNo']="";
 		}
 		
 		if(isset($_GET['s']))
@@ -369,9 +387,9 @@ function matchingtype()
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&cc=mic&mts");
+				header("Location:index.php?r=lss&tr=ce&mts");
 				exit;
-				$_SESSION['questionNo']="";
+				//$_SESSION['questionNo']="";
 			
 		}
 
@@ -403,7 +421,7 @@ function fillintheblanks()
 			{
 				//
 			}	
-			header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
+			header("Location:index.php?r=lss&tr=ce&cc=fs&nq");
 			exit;
 			
 		}							
@@ -416,9 +434,9 @@ function fillintheblanks()
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
+			header("Location:index.php?r=lss&tr=ce&cc=fs&rm");
 			exit;
-			$_SESSION['questionNo']="";
+			//$_SESSION['questionNo']="";
 		}
 		
 		if(isset($_GET['s']))
@@ -430,9 +448,9 @@ function fillintheblanks()
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&cc=mic&fibs");
+				header("Location:index.php?r=lss&tr=ce&fibs");
 				exit;
-				$_SESSION['questionNo']="";
+				//$_SESSION['questionNo']="";
 			
 		}
 

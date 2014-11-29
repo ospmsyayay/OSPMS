@@ -1048,7 +1048,7 @@ border: 2px solid #009;
 	margin-left:450px;
 }
 
-.questionModel, .choicesModel, .correctModel
+.questionModel, .choicesModel, .correctModel, .exerciseName
 {
 	background-color: #87CEEB;
 	border-radius: 10px;
