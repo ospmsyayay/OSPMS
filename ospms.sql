@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+-- MySQL dump 10.13  Distrib 5.6.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ospms
 -- ------------------------------------------------------
@@ -78,6 +78,58 @@ LOCK TABLES `class_schedule` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `create_ol_exercise`
+--
+
+DROP TABLE IF EXISTS `create_ol_exercise`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `create_ol_exercise` (
+  `exerciseID` int(11) NOT NULL AUTO_INCREMENT,
+  `typeID` varchar(8) NOT NULL,
+  PRIMARY KEY (`exerciseID`),
+  KEY `FK_exerciseID` (`typeID`),
+  CONSTRAINT `FK_exerciseID` FOREIGN KEY (`typeID`) REFERENCES `ol_exercise_type` (`typeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `create_ol_exercise`
+--
+
+LOCK TABLES `create_ol_exercise` WRITE;
+/*!40000 ALTER TABLE `create_ol_exercise` DISABLE KEYS */;
+/*!40000 ALTER TABLE `create_ol_exercise` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `create_questions`
+--
+
+DROP TABLE IF EXISTS `create_questions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `create_questions` (
+  `questionNo` int(11) NOT NULL AUTO_INCREMENT,
+  `exerciseID` int(11) DEFAULT NULL,
+  `oe_question` varchar(255) NOT NULL,
+  `oe_correct` varchar(255) NOT NULL,
+  PRIMARY KEY (`questionNo`),
+  KEY `FK_create_questions` (`exerciseID`),
+  CONSTRAINT `FK_create_questions` FOREIGN KEY (`exerciseID`) REFERENCES `create_ol_exercise` (`exerciseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `create_questions`
+--
+
+LOCK TABLES `create_questions` WRITE;
+/*!40000 ALTER TABLE `create_questions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `create_questions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `create_user`
 --
 
@@ -128,53 +180,51 @@ LOCK TABLES `grade_level` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `oemc_choice`
+-- Table structure for table `oe_choices`
 --
 
-DROP TABLE IF EXISTS `oemc_choice`;
+DROP TABLE IF EXISTS `oe_choices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `oemc_choice` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `oemc_ID` int(11) NOT NULL,
-  `oemc_choices` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_oemc_choice` (`oemc_ID`),
-  CONSTRAINT `FK_oemc_choice` FOREIGN KEY (`oemc_ID`) REFERENCES `ol_exer_multiple_choice` (`oemc_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+CREATE TABLE `oe_choices` (
+  `questionNo` int(11) NOT NULL,
+  `oe_choices` varchar(255) NOT NULL,
+  PRIMARY KEY (`questionNo`,`oe_choices`),
+  CONSTRAINT `FK_oe_choice` FOREIGN KEY (`questionNo`) REFERENCES `create_questions` (`questionNo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `oemc_choice`
+-- Dumping data for table `oe_choices`
 --
 
-LOCK TABLES `oemc_choice` WRITE;
-/*!40000 ALTER TABLE `oemc_choice` DISABLE KEYS */;
-/*!40000 ALTER TABLE `oemc_choice` ENABLE KEYS */;
+LOCK TABLES `oe_choices` WRITE;
+/*!40000 ALTER TABLE `oe_choices` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oe_choices` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `ol_exer_multiple_choice`
+-- Table structure for table `ol_exercise_type`
 --
 
-DROP TABLE IF EXISTS `ol_exer_multiple_choice`;
+DROP TABLE IF EXISTS `ol_exercise_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ol_exer_multiple_choice` (
-  `oemc_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `oemc_question` varchar(255) DEFAULT NULL,
-  `oemc_correct` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`oemc_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+CREATE TABLE `ol_exercise_type` (
+  `typeID` varchar(8) NOT NULL,
+  `type_desc` varchar(20) NOT NULL,
+  PRIMARY KEY (`typeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `ol_exer_multiple_choice`
+-- Dumping data for table `ol_exercise_type`
 --
 
-LOCK TABLES `ol_exer_multiple_choice` WRITE;
-/*!40000 ALTER TABLE `ol_exer_multiple_choice` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ol_exer_multiple_choice` ENABLE KEYS */;
+LOCK TABLES `ol_exercise_type` WRITE;
+/*!40000 ALTER TABLE `ol_exercise_type` DISABLE KEYS */;
+INSERT INTO `ol_exercise_type` VALUES ('OETFILL','fill in the blanks'),('OETMAT','matching type'),('OETMUL','multiple choice'),('OETTOF','true or false');
+/*!40000 ALTER TABLE `ol_exercise_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -201,6 +251,29 @@ CREATE TABLE `parent` (
 LOCK TABLES `parent` WRITE;
 /*!40000 ALTER TABLE `parent` DISABLE KEYS */;
 /*!40000 ALTER TABLE `parent` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `post_ol_exer`
+--
+
+DROP TABLE IF EXISTS `post_ol_exer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post_ol_exer` (
+  `exerciseID` int(11) NOT NULL,
+  PRIMARY KEY (`exerciseID`),
+  CONSTRAINT `FK_post_oe` FOREIGN KEY (`exerciseID`) REFERENCES `create_ol_exercise` (`exerciseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_ol_exer`
+--
+
+LOCK TABLES `post_ol_exer` WRITE;
+/*!40000 ALTER TABLE `post_ol_exer` DISABLE KEYS */;
+/*!40000 ALTER TABLE `post_ol_exer` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -372,4 +445,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-25 20:39:56
+-- Dump completed on 2014-11-29 12:15:16
