@@ -17,15 +17,37 @@
 		<?php
 		
 		
-		if(isset($_GET['os']))
+		if(isset($_GET['ms']))
 			{
 		?>
 				alert('Multiple Choice Saved');
 		<?php
 				
 			}
+			if(isset($_GET['ts']))
+			{
+		?>	
+				alert('True or False Saved');
+		<?php 
+			}
 			
-			else if (isset($_GET['rm']))
+			if(isset($_GET['mts']))
+			{
+			
+		?>	
+				alert('Matching Type Saved');
+		<?php 
+			}
+			
+			if(isset($_GET['fibs']))
+			{
+		?>		
+			alert('Fill in the Blanks Saved');
+			
+		<?php 
+			}
+		
+			if (isset($_GET['rm']))
 			{
 		?>
 				alert('Multiple Choice Discarded!');
@@ -60,7 +82,7 @@
 				
 					Question <?php 
 				
-						echo $_SESSION['question_no'];
+						//echo $_SESSION['question_no'];
 		
 					?>:
 
@@ -126,7 +148,7 @@
 				
 					Question <?php 
 				
-						echo $_SESSION['question_no'];
+						//echo $_SESSION['question_no'];
 		
 					?>:
 
@@ -163,13 +185,13 @@
 						<br/>
 					<div class="multi-holder">
 					
-						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=te&n">Add Question +</button>
 					<?php
 					if(isset($_GET['nq']))
 					{
 					?>
-						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
-						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=te&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=te&x">Discard Exercise</button>
 					<?php
 					}
 					?>
@@ -193,7 +215,7 @@
 				
 					Question <?php 
 				
-						echo $_SESSION['question_no'];
+						//echo $_SESSION['question_no'];
 		
 					?>:
 
@@ -230,13 +252,13 @@
 						<br/>
 					<div class="multi-holder">
 					
-						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=me&n">Add Question +</button>
 					<?php
 					if(isset($_GET['nq']))
 					{
 					?>
-						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
-						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=me&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=me&x">Discard Exercise</button>
 					<?php
 					}
 					?>
@@ -261,7 +283,7 @@
 				
 					Question <?php 
 				
-						echo $_SESSION['question_no'];
+						//echo $_SESSION['question_no'];
 		
 					?>:
 
@@ -298,13 +320,13 @@
 						<br/>
 					<div class="multi-holder">
 					
-						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=fs&n">Add Question +</button>
 					<?php
 					if(isset($_GET['nq']))
 					{
 					?>
-						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
-						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=fs&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=fs&x">Discard Exercise</button>
 					<?php
 					}
 					?>
