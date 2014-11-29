@@ -61,11 +61,11 @@ $sql="INSERT INTO create_questions
 
 }
 
-function create_choices( $questionNo,$choices)
+function create_choices( $questionNo,$choices,$question_date_created)
 {
 include "config/conn.php";
 
-$sql="INSERT INTO oe_choices  VALUES('".$questionNo."','".$choices."')";
+$sql="INSERT INTO oe_choices  VALUES('".$questionNo."','".$choices."','".$question_date_created."')";
 	
 $choices_created = mysqli_query($cxn,$sql);
 	
@@ -73,18 +73,18 @@ $choices_created = mysqli_query($cxn,$sql);
 
 }
 
-function discard_questions($questionNo)
+function discard_questions($question_date_created)
 {
 
 include "config/conn.php";
 
 $questions_discarded="";
-$discard_choices="DELETE FROM oe_choices where questionNo='".$questionNo."'";
+$discard_choices="DELETE FROM oe_choices where date_created='".$question_date_created."'";
 $choices_discarded= mysqli_query($cxn,$discard_choices);
 
 if($choices_discarded)
 {
-	$discard_questions="DELETE FROM create_questions where questionNo='".$questionNo."'";
+	$discard_questions="DELETE FROM create_questions where date_created='".$question_date_created."'";
 	$questions_discarded= mysqli_query($cxn,$discard_questions);
 }
 

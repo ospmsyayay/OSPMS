@@ -87,6 +87,8 @@ DROP TABLE IF EXISTS `create_ol_exercise`;
 CREATE TABLE `create_ol_exercise` (
   `exerciseID` int(11) NOT NULL AUTO_INCREMENT,
   `typeID` varchar(8) NOT NULL,
+  `exerciseName` varchar(25) NOT NULL,
+  `date_created` datetime NOT NULL,
   PRIMARY KEY (`exerciseID`),
   KEY `FK_exerciseID` (`typeID`),
   CONSTRAINT `FK_exerciseID` FOREIGN KEY (`typeID`) REFERENCES `ol_exercise_type` (`typeID`)
@@ -114,6 +116,7 @@ CREATE TABLE `create_questions` (
   `exerciseID` int(11) DEFAULT NULL,
   `oe_question` varchar(255) NOT NULL,
   `oe_correct` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
   PRIMARY KEY (`questionNo`),
   KEY `FK_create_questions` (`exerciseID`),
   CONSTRAINT `FK_create_questions` FOREIGN KEY (`exerciseID`) REFERENCES `create_ol_exercise` (`exerciseID`)
@@ -189,6 +192,7 @@ DROP TABLE IF EXISTS `oe_choices`;
 CREATE TABLE `oe_choices` (
   `questionNo` int(11) NOT NULL,
   `oe_choices` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
   PRIMARY KEY (`questionNo`,`oe_choices`),
   CONSTRAINT `FK_oe_choice` FOREIGN KEY (`questionNo`) REFERENCES `create_questions` (`questionNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -445,4 +449,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-29 12:15:16
+-- Dump completed on 2014-11-29 22:57:02

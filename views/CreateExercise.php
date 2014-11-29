@@ -82,15 +82,15 @@
 						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value=""/>
+						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						//echo $_SESSION['question_no'];
-					?>:
+						echo $_SESSION['question_no'];
+						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
@@ -144,18 +144,19 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-							<label>Exercise Name:</label>
+					
+						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value=""/>
+						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						//echo $_SESSION['question_no'];
-					?>:
+						echo $_SESSION['question_no'];
+						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
@@ -165,21 +166,20 @@
 					<?php 
 					$rows=2;
 					$counter=0;
-					$value="";
 					while($counter<2)
 					{
 						if($counter==0)
 						{
 							$value="true";
-							
 						}
 						else
 						{
 							$value="false";
 						}
+
 					?>
 						<br/>
-						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" value="<?php $value; ?>" readonly="true"/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" readonly="true" value="<?php echo $value; ?>" />
 						<br/>
 						<br/>
 					
@@ -220,18 +220,19 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-							<label>Exercise Name:</label>
+					
+						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value=""/>
+						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						//echo $_SESSION['question_no'];
-					?>:
+						echo $_SESSION['question_no'];
+						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
@@ -277,8 +278,6 @@
 		
 		<?php
 				}
-				
-
 			if($_GET['cc']=="fs")
 				{			
 		
@@ -287,18 +286,19 @@
 		<div class="center-exercise">
 					
 					<form method="post" action="" role="form">
-							<label>Exercise Name:</label>
+					
+						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value=""/>
+						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						//echo $_SESSION['question_no'];
-					?>:
+						echo $_SESSION['question_no'];
+						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
 						<br/>
@@ -306,9 +306,9 @@
 						<br/>
 					<label>Choices:</label>
 					<?php 
-					$rows=1;
+					$rows=4;
 					$counter=0;
-					while($counter<1)
+					while($counter<4)
 					{
 					?>
 						<br/>

@@ -198,61 +198,101 @@ function multiplechoice()
 {
 	
 	include "model/online_exercise.php";
-			
-			
-		$question=$answer="";
+		
+		$_SESSION['question_no']++;
+		
+		$question=$answer=$exerciseName="";
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		$insert_success;
-		$_SESSION['exerciseName']=$_POST['exerciseName'];
+		$exerciseName=$_POST['exerciseName'];
 		
-		 
+		
+		
 		if(isset($_GET['n']))
 		{
+			
+			if(empty($_SESSION['exerciseName']))
+			{
+				$_SESSION['exerciseName']=$exerciseName;
+			}
 			
 			if(empty($_SESSION['question_date_created']))
 			{
 				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
 			}
-
-			else
-			{
+			
+			
 				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
 		
 				foreach($_POST['choices'] as $choices)
 				{
-				  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
 				}
 				
 				if(!$insert_success)
 				{
 					//
-				}	
+				}
+				
+				
+				
 				header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
 				exit;
-			}
+			
 	
 		}							
 		
 		if(isset($_GET['x']))
 		{
-		//$_SESSION['question_no']=0;
-			$questions_discarded=discard_questions($_SESSION['questionNo']);
+		
+			$questions_discarded=discard_questions($_SESSION['question_date_created']);
 			if(!$questions_discarded)
 			{
 				//
 			}
 			$_SESSION['questionNo']=null;
 			$_SESSION['question_date_created']=null;
-			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
+			$_SESSION['exerciseName']=null;
+			$_SESSION['question_no']=null;
+			$_SESSION['question_no']=1;
+			header("Location:index.php?r=lss&tr=ce&rm");
 			exit;
 			
 		}
 		
 		if(isset($_GET['s']))
 		{	
-		//$_SESSION['question_no']=0;
+		
+		if(!empty($question))
+		{
+				if(empty($_SESSION['exerciseName']))
+			{
+				$_SESSION['exerciseName']=$exerciseName;
+			}
+			
+			if(empty($_SESSION['question_date_created']))
+			{
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
+				
+			}
+			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
+				{
+					//
+				}
+			
+		}
+		
 				$_SESSION['date_created']= date("Y-m-d H:i:s"); 
 				
 				$multi_created=create_exercise($_SESSION['exerciseName'],'multi',$_SESSION['date_created'],$_SESSION['question_date_created']);
@@ -264,7 +304,9 @@ function multiplechoice()
 				$_SESSION['questionNo']=null;
 				$_SESSION['question_date_created']=null;
 				$_SESSION['date_created']=null;
-				
+				$_SESSION['exerciseName']=null;
+				$_SESSION['question_no']=null;
+				$_SESSION['question_no']=1;
 				header("Location:index.php?r=lss&tr=ce&ms");
 				exit;
 			
@@ -275,187 +317,359 @@ function multiplechoice()
 
 function trueorfalse()
 {
-
+	
 	include "model/online_exercise.php";
-			
-			
-		$question=$answer="";
+		
+		$_SESSION['question_no']++;
+		
+		$question=$answer=$exerciseName="";
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		$insert_success;
+		$exerciseName=$_POST['exerciseName'];
+		
+		
 		
 		if(isset($_GET['n']))
 		{
 			
-			$_SESSION['questionNo']=create_questions($question,$answer);
-	
-			foreach($_POST['choices'] as $choices)
+			if(empty($_SESSION['exerciseName']))
 			{
-			  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(!$insert_success)
+			if(empty($_SESSION['question_date_created']))
 			{
-				//
-			}	
-			header("Location:index.php?r=lss&tr=ce&cc=te&nq");
-			exit;
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
+				
+			}
 			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
+				{
+					//
+				}
+				
+				header("Location:index.php?r=lss&tr=ce&cc=te&nq");
+				exit;
+				
 		}							
 		
 		if(isset($_GET['x']))
 		{
-		//$_SESSION['question_no']=0;
-			$questions_discarded=discard_questions($_SESSION['questionNo']);
+		
+			$questions_discarded=discard_questions($_SESSION['question_date_created']);
 			if(!$questions_discarded)
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=te&rm");
+			$_SESSION['questionNo']=null;
+			$_SESSION['question_date_created']=null;
+			$_SESSION['exerciseName']=null;
+			$_SESSION['question_no']=null;
+			$_SESSION['question_no']=1;
+			header("Location:index.php?r=lss&tr=ce&rm");
 			exit;
-			//$_SESSION['questionNo']="";
+			
 		}
 		
 		if(isset($_GET['s']))
 		{	
-		//$_SESSION['question_no']=0;
-				$trueorfalse_created=create_exercise('true');
+		
+		if(!empty($question))
+		{
+				if(empty($_SESSION['exerciseName']))
+			{
+				$_SESSION['exerciseName']=$exerciseName;
+			}
+			
+			if(empty($_SESSION['question_date_created']))
+			{
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
-				if(!$trueorfalse_created)
+			}
+			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&ts");
-				exit;
-				//$_SESSION['questionNo']="";
 			
 		}
-
-
-
+		
+				$_SESSION['date_created']= date("Y-m-d H:i:s"); 
+				
+				$multi_created=create_exercise($_SESSION['exerciseName'],'multi',$_SESSION['date_created'],$_SESSION['question_date_created']);
+				if(!$multi_created)
+				{
+					//
+				}
+				
+				$_SESSION['questionNo']=null;
+				$_SESSION['question_date_created']=null;
+				$_SESSION['date_created']=null;
+				$_SESSION['exerciseName']=null;
+				$_SESSION['question_no']=null;
+				$_SESSION['question_no']=1;
+				header("Location:index.php?r=lss&tr=ce&ts");
+				exit;
+			
+		}
+	
+		
 }
 
 function matchingtype()
 {
-
+	
 	include "model/online_exercise.php";
-			
-			
-		$question=$answer="";
+		
+		$_SESSION['question_no']++;
+		
+		$question=$answer=$exerciseName="";
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		$insert_success;
+		$exerciseName=$_POST['exerciseName'];
+		
+		
 		
 		if(isset($_GET['n']))
 		{
 			
-			$_SESSION['questionNo']=create_questions($question,$answer);
-	
-			foreach($_POST['choices'] as $choices)
+			if(empty($_SESSION['exerciseName']))
 			{
-			  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(!$insert_success)
+			if(empty($_SESSION['question_date_created']))
 			{
-				//
-			}	
-			header("Location:index.php?r=lss&tr=ce&cc=me&nq");
-			exit;
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
+				
+			}
 			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
+				{
+					//
+				}
+				
+				header("Location:index.php?r=lss&tr=ce&cc=me&nq");
+
+				exit;
+			
+	
 		}							
 		
 		if(isset($_GET['x']))
 		{
-		//$_SESSION['question_no']=0;
-			$questions_discarded=discard_questions($_SESSION['questionNo']);
+		
+			$questions_discarded=discard_questions($_SESSION['question_date_created']);
 			if(!$questions_discarded)
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=me&rm");
+			$_SESSION['questionNo']=null;
+			$_SESSION['question_date_created']=null;
+			$_SESSION['exerciseName']=null;
+			$_SESSION['question_no']=null;
+			$_SESSION['question_no']=1;
+			header("Location:index.php?r=lss&tr=ce&rm");
 			exit;
-			//$_SESSION['questionNo']="";
+			
 		}
 		
 		if(isset($_GET['s']))
 		{	
-		//$_SESSION['question_no']=0;
-				$matchingtype_created=create_exercise('matching');
+		
+		if(!empty($question))
+		{
+				if(empty($_SESSION['exerciseName']))
+			{
+				$_SESSION['exerciseName']=$exerciseName;
+			}
+			
+			if(empty($_SESSION['question_date_created']))
+			{
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
-				if(!$matchingtype_created)
+			}
+			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&mts");
-				exit;
-				//$_SESSION['questionNo']="";
 			
 		}
-
-
-
+		
+				$_SESSION['date_created']= date("Y-m-d H:i:s"); 
+				
+				$multi_created=create_exercise($_SESSION['exerciseName'],'multi',$_SESSION['date_created'],$_SESSION['question_date_created']);
+				if(!$multi_created)
+				{
+					//
+				}
+				
+				$_SESSION['questionNo']=null;
+				$_SESSION['question_date_created']=null;
+				$_SESSION['date_created']=null;
+				$_SESSION['exerciseName']=null;
+				$_SESSION['question_no']=null;
+				$_SESSION['question_no']=1;
+				header("Location:index.php?r=lss&tr=ce&mts");
+				exit;
+			
+		}
+	
+		
 }
 
 function fillintheblanks()
 {
+	
 	include "model/online_exercise.php";
-			
-			
-		$question=$answer="";
+		
+		$_SESSION['question_no']++;
+		
+		$question=$answer=$exerciseName="";
 		$question = $_POST['question'];
 		$answer = $_POST['answer'];
 		$insert_success;
+		$exerciseName=$_POST['exerciseName'];
+		
+		
 		
 		if(isset($_GET['n']))
 		{
 			
-			$_SESSION['questionNo']=create_questions($question,$answer);
-	
-			foreach($_POST['choices'] as $choices)
+			if(empty($_SESSION['exerciseName']))
 			{
-			  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(!$insert_success)
+			if(empty($_SESSION['question_date_created']))
 			{
-				//
-			}	
-			header("Location:index.php?r=lss&tr=ce&cc=fs&nq");
-			exit;
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
+				
+			}
 			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
+				{
+					//
+				}
+			
+				header("Location:index.php?r=lss&tr=ce&cc=fs&nq");
+				exit;
+			
+	
 		}							
 		
 		if(isset($_GET['x']))
 		{
-		//$_SESSION['question_no']=0;
-			$questions_discarded=discard_questions($_SESSION['questionNo']);
+		
+			$questions_discarded=discard_questions($_SESSION['question_date_created']);
 			if(!$questions_discarded)
 			{
 				//
 			}
-			header("Location:index.php?r=lss&tr=ce&cc=fs&rm");
+			$_SESSION['questionNo']=null;
+			$_SESSION['question_date_created']=null;
+			$_SESSION['exerciseName']=null;
+			$_SESSION['question_no']=null;
+			$_SESSION['question_no']=1;
+			header("Location:index.php?r=lss&tr=ce&rm");
 			exit;
-			//$_SESSION['questionNo']="";
+			
 		}
 		
 		if(isset($_GET['s']))
 		{	
-		//$_SESSION['question_no']=0;
-				$fillin_created=create_exercise('fill');
+		
+		if(!empty($question))
+		{
+				if(empty($_SESSION['exerciseName']))
+			{
+				$_SESSION['exerciseName']=$exerciseName;
+			}
+			
+			if(empty($_SESSION['question_date_created']))
+			{
+				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
-				if(!$fillin_created)
+			}
+			
+			
+				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
+		
+				foreach($_POST['choices'] as $choices)
+				{
+				  $insert_success=create_choices( $_SESSION['questionNo'],$choices,$_SESSION['question_date_created']);
+				}
+				
+				if(!$insert_success)
 				{
 					//
 				}
-				header("Location:index.php?r=lss&tr=ce&fibs");
-				exit;
-				//$_SESSION['questionNo']="";
 			
 		}
-
-
-
+		
+				$_SESSION['date_created']= date("Y-m-d H:i:s"); 
+				
+				$multi_created=create_exercise($_SESSION['exerciseName'],'multi',$_SESSION['date_created'],$_SESSION['question_date_created']);
+				if(!$multi_created)
+				{
+					//
+				}
+				
+				$_SESSION['questionNo']=null;
+				$_SESSION['question_date_created']=null;
+				$_SESSION['date_created']=null;
+				$_SESSION['exerciseName']=null;
+				$_SESSION['question_no']=null;
+				$_SESSION['question_no']=1;
+				header("Location:index.php?r=lss&tr=ce&fibs");
+				exit;
+			
+		}
+	
+		
 }
 
 /*
