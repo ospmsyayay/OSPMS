@@ -54,7 +54,7 @@
 					
 		?>
 		<hr/>
-		<div id="choice">
+		<div class="center-exercise">
 				<form method="post" action="" role="form">
 					
 				
@@ -64,11 +64,11 @@
 		
 					?>:
 
-					<br/>
-					<input placeholder="Question" name="question" class="questionModel" type="text" />
-					<br/>
-					<br/>
-					<br/>
+						<br/>
+						<input placeholder="Question" name="question" class="questionModel" type="text" />
+						<br/>
+						<br/>
+						<br/>
 					
 					Choices:
 					<?php 
@@ -77,27 +77,27 @@
 					while($counter<5)
 					{
 					?>
-					<br/>
-					<br/>
-					<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
-					<br/>
+						<br/>
+						<br/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
 					
 					<?php 
 					$counter++;
 					}
 					?>
 
-					<br/>
-					<br/>Correct Answer:
-					<br/>
-					<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
-					<br/>
-					
-					<br/>
-					<br/>
-					<div class="multi-holder">
-					
-					<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+						<br/>
+						<br/>Correct Answer:
+						<br/>
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<br/>
+						
+						<br/>
+						<br/>
+						<div class="multi-holder">
+						
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
 					<?php
 					if(isset($_GET['nq']))
 					{
@@ -119,39 +119,129 @@
 		
 		?>
 		<hr/>
-		<div id="trueOrFalse">
+		<div class="center-exercise">
 					
-					Question 1:
-					<br/>
-					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
-					<br/>
-					<br/>
+					<form method="post" action="" role="form">
 					
-					<br/>
-					<br/>Correct Answer:
-					<br/>
-					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+				
+					Question <?php 
+				
+						echo $_SESSION['question_no'];
+		
+					?>:
+
+						<br/>
+						<input placeholder="Question" name="question" class="questionModel" type="text" />
+						<br/>
+						<br/>
+						<br/>
+					
+					Choices:
+					<?php 
+					$rows=2;
+					$counter=0;
+					while($counter<2)
+					{
+					?>
+						<br/>
+						<br/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
+					
+					<?php 
+					$counter++;
+					}
+					?>
+
+						<br/>
+						<br/>Correct Answer:
+						<br/>
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<br/>
+						
+						<br/>
+						<br/>
+					<div class="multi-holder">
+					
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+					<?php
+					if(isset($_GET['nq']))
+					{
+					?>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+					<?php
+					}
+					?>
+					</div>	
+				</form>		
 					
 		</div>
 		
 		<?php
 				}
 				
-			if($_GET['cc']=="fs")
+			if($_GET['cc']=="me")
 				{			
 		
 		?>
 		<hr/>
-		<div id="fill">
+		<div class="center-exercise">
 					
-					Question 1:
-					<br/>
-					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
-					<br/>
-					<br/>
-					<br/>Correct Answer:
-					<br/>
-					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+					<form method="post" action="" role="form">
+					
+				
+					Question <?php 
+				
+						echo $_SESSION['question_no'];
+		
+					?>:
+
+						<br/>
+						<input placeholder="Question" name="question" class="questionModel" type="text" />
+						<br/>
+						<br/>
+						<br/>
+					
+					Choices:
+					<?php 
+					$rows=1;
+					$counter=0;
+					while($counter<1)
+					{
+					?>
+						<br/>
+						<br/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
+					
+					<?php 
+					$counter++;
+					}
+					?>
+
+						<br/>
+						<br/>Correct Answer:
+						<br/>
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<br/>
+						
+						<br/>
+						<br/>
+					<div class="multi-holder">
+					
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+					<?php
+					if(isset($_GET['nq']))
+					{
+					?>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+					<?php
+					}
+					?>
+					</div>	
+				</form>					
 					
 		</div>
 		
@@ -159,21 +249,67 @@
 				}
 				
 
-			if($_GET['cc']=="me")
+			if($_GET['cc']=="fs")
 				{			
 		
 		?>
 		<hr/>
-		<div id="matching">
+		<div class="center-exercise">
 					
-					Question :
-					<br/>
-					<input placeholder="Question1" name="question[]" class="questionModel" type="text" />
-					<br/>
-					<br/>
-					<br/>Correct Answer:
-					<br/>
-					<input placeholder="Correct Answer" name="question[]" class="questionModel" type="text" />				
+					<form method="post" action="" role="form">
+					
+				
+					Question <?php 
+				
+						echo $_SESSION['question_no'];
+		
+					?>:
+
+						<br/>
+						<input placeholder="Question" name="question" class="questionModel" type="text" />
+						<br/>
+						<br/>
+						<br/>
+					
+					Choices:
+					<?php 
+					$rows=1;
+					$counter=0;
+					while($counter<1)
+					{
+					?>
+						<br/>
+						<br/>
+						<input placeholder="Choices" name="choices[]" class="choicesModel" type="text" />
+						<br/>
+					
+					<?php 
+					$counter++;
+					}
+					?>
+
+						<br/>
+						<br/>Correct Answer:
+						<br/>
+						<input placeholder="Correct Answer" name="answer" class="correctModel" type="text" />
+						<br/>
+						
+						<br/>
+						<br/>
+					<div class="multi-holder">
+					
+						<button type="submit" class="btn btn-fresh text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&n">Add Question +</button>
+					<?php
+					if(isset($_GET['nq']))
+					{
+					?>
+						<button type="submit" class="btn btn-sky text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&s">Save Exercise</button>
+						<button type="submit" class="btn btn-danger text-uppercase" formaction="index.php?r=lss&tr=ce&cc=mic&x">Discard Exercise</button>
+					<?php
+					}
+					?>
+					</div>	
+				</form>				
 					
 		</div>
 		

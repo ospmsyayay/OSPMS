@@ -172,9 +172,12 @@ function createexer()
 				{
 					case 'mic':multiplechoice();
 								break;
-					case 'te':break;
-					case 'me':break;
-					case 'fs';break;
+					case 'te':trueorfalse();
+								break;
+					case 'me':matchingtype();
+								break;
+					case 'fs';fillintheblanks();
+								break;
 					default:
 					break;
 				
@@ -252,6 +255,83 @@ function multiplechoice()
 		
 }
 
+function trueorfalse()
+{
+
+	include "model/online_exercise.php";
+			
+			
+		$question=$answer="";
+		$question = $_POST['question'];
+		$answer = $_POST['answer'];
+		$insert_success;
+		
+		if(isset($_GET['n']))
+		{
+			
+			$_SESSION['questionNo']=create_questions($question,$answer);
+	
+			foreach($_POST['choices'] as $choices)
+			{
+			  $insert_success=create_choices( $_SESSION['questionNo'],$choices);
+			}
+			
+			if(!$insert_success)
+			{
+				//
+			}	
+			header("Location:index.php?r=lss&tr=ce&cc=mic&nq");
+			exit;
+			
+		}							
+		
+		if(isset($_GET['x']))
+		{
+		$_SESSION['question_no']=0;
+			$questions_discarded=discard_questions($_SESSION['questionNo']);
+			if(!$questions_discarded)
+			{
+				//
+			}
+			header("Location:index.php?r=lss&tr=ce&cc=mic&rm");
+			exit;
+			$_SESSION['questionNo']="";
+		}
+		
+		if(isset($_GET['s']))
+		{	
+		$_SESSION['question_no']=0;
+				$multi_created=create_exercise('true');
+				
+				if(!$multi_created)
+				{
+					//
+				}
+				header("Location:index.php?r=lss&tr=ce&cc=mic&os");
+				exit;
+				$_SESSION['questionNo']="";
+			
+		}
+
+
+
+}
+
+function matchingtype()
+{
+
+
+
+
+}
+
+function fillintheblanks()
+{
+
+
+
+
+}
 
 /*
 function logout()
