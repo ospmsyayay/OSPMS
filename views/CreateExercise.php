@@ -82,14 +82,14 @@
 						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
+						value="<?php if(isset($_SESSION['exerciseName'])) {echo $_SESSION['exerciseName'];} ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						echo $_SESSION['question_no'];
+						if(isset($_SESSION['question_no'])){echo $_SESSION['question_no'];}
 						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
@@ -148,14 +148,14 @@
 						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
+						value="<?php if(isset($_SESSION['exerciseName'])){echo $_SESSION['exerciseName'];} ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						echo $_SESSION['question_no'];
+						if(isset($_SESSION['question_no'])) {echo $_SESSION['question_no'];}
 						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
@@ -224,14 +224,14 @@
 						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
+						value="<?php if(isset($_SESSION['exerciseName'])){echo $_SESSION['exerciseName'];} ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						echo $_SESSION['question_no'];
+						if(isset($_SESSION['question_no'])){echo $_SESSION['question_no'];}
 						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />
@@ -290,14 +290,14 @@
 						<label>Exercise Name:</label>
 						<br/>
 						<input placeholder="Create Exercise Name" name="exerciseName" class="exerciseName" type="text" 
-						value="<?php echo $_SESSION['exerciseName']; ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
+						value="<?php if(isset($_SESSION['exerciseName'])){echo $_SESSION['exerciseName'];} ?>" <?php if(isset($_GET['nq'])){ ?> readonly="true" <?php } ?>/> 
 						<br/>
 						<br/>
 						<br/>
 						
 						<label>Question </label>
 						<?php 
-						echo $_SESSION['question_no'];
+						if(isset($_SESSION['question_no'])){echo $_SESSION['question_no'];}
 						?>:
 						<br/>
 						<input placeholder="Question" name="question" class="questionModel" type="text" />

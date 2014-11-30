@@ -199,6 +199,10 @@ function multiplechoice()
 	
 	include "model/online_exercise.php";
 		
+		if(!isset($_SESSION['question_no']))
+		{
+			$_SESSION['question_no']=1;
+		}
 		$_SESSION['question_no']++;
 		
 		$question=$answer=$exerciseName="";
@@ -212,12 +216,12 @@ function multiplechoice()
 		if(isset($_GET['n']))
 		{
 			
-			if(empty($_SESSION['exerciseName']))
+			if(!isset($_SESSION['exerciseName']) or empty($_SESSION['exerciseName']))
 			{
 				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(empty($_SESSION['question_date_created']))
+			if(!isset($_SESSION['question_date_created']) or empty($_SESSION['question_date_created']))
 			{
 				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
@@ -267,18 +271,7 @@ function multiplechoice()
 		
 		if(!empty($question))
 		{
-				if(empty($_SESSION['exerciseName']))
-			{
-				$_SESSION['exerciseName']=$exerciseName;
-			}
-			
-			if(empty($_SESSION['question_date_created']))
-			{
-				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
-			}
-			
-			
 				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
 		
 				foreach($_POST['choices'] as $choices)
@@ -320,6 +313,12 @@ function trueorfalse()
 	
 	include "model/online_exercise.php";
 		
+		
+		if(!isset($_SESSION['question_no']))
+		{
+			$_SESSION['question_no']=1;
+		}
+		
 		$_SESSION['question_no']++;
 		
 		$question=$answer=$exerciseName="";
@@ -333,12 +332,12 @@ function trueorfalse()
 		if(isset($_GET['n']))
 		{
 			
-			if(empty($_SESSION['exerciseName']))
+			if(!isset($_SESSION['exerciseName']) or empty($_SESSION['exerciseName']))
 			{
 				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(empty($_SESSION['question_date_created']))
+			if(!isset($_SESSION['question_date_created']) or empty($_SESSION['question_date_created']))
 			{
 				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
@@ -385,17 +384,6 @@ function trueorfalse()
 		
 		if(!empty($question))
 		{
-				if(empty($_SESSION['exerciseName']))
-			{
-				$_SESSION['exerciseName']=$exerciseName;
-			}
-			
-			if(empty($_SESSION['question_date_created']))
-			{
-				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
-				
-			}
-			
 			
 				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
 		
@@ -438,6 +426,11 @@ function matchingtype()
 	
 	include "model/online_exercise.php";
 		
+		if(!isset($_SESSION['question_no']))
+		{
+			$_SESSION['question_no']=1;
+		}
+		
 		$_SESSION['question_no']++;
 		
 		$question=$answer=$exerciseName="";
@@ -451,12 +444,12 @@ function matchingtype()
 		if(isset($_GET['n']))
 		{
 			
-			if(empty($_SESSION['exerciseName']))
+			if(!isset($_SESSION['exerciseName']) or empty($_SESSION['exerciseName']))
 			{
 				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(empty($_SESSION['question_date_created']))
+			if(!isset($_SESSION['question_date_created']) or empty($_SESSION['question_date_created']))
 			{
 				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
@@ -505,18 +498,7 @@ function matchingtype()
 		
 		if(!empty($question))
 		{
-				if(empty($_SESSION['exerciseName']))
-			{
-				$_SESSION['exerciseName']=$exerciseName;
-			}
-			
-			if(empty($_SESSION['question_date_created']))
-			{
-				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
-			}
-			
-			
 				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
 		
 				foreach($_POST['choices'] as $choices)
@@ -558,6 +540,11 @@ function fillintheblanks()
 	
 	include "model/online_exercise.php";
 		
+		if(!isset($_SESSION['question_no']))
+		{
+			$_SESSION['question_no']=1;
+		}
+		
 		$_SESSION['question_no']++;
 		
 		$question=$answer=$exerciseName="";
@@ -571,12 +558,12 @@ function fillintheblanks()
 		if(isset($_GET['n']))
 		{
 			
-			if(empty($_SESSION['exerciseName']))
+			if(!isset($_SESSION['exerciseName']) or empty($_SESSION['exerciseName']))
 			{
 				$_SESSION['exerciseName']=$exerciseName;
 			}
 			
-			if(empty($_SESSION['question_date_created']))
+			if(!isset($_SESSION['questino_date_created']) or empty($_SESSION['question_date_created']))
 			{
 				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
 				
@@ -624,17 +611,6 @@ function fillintheblanks()
 		
 		if(!empty($question))
 		{
-				if(empty($_SESSION['exerciseName']))
-			{
-				$_SESSION['exerciseName']=$exerciseName;
-			}
-			
-			if(empty($_SESSION['question_date_created']))
-			{
-				$_SESSION['question_date_created']= date("Y-m-d H:i:s");  
-				
-			}
-			
 			
 				$_SESSION['questionNo']=create_questions($question,$answer,$_SESSION['question_date_created']);
 		

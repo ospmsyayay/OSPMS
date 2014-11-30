@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `admin` (
+  `admin_id` varchar(16) NOT NULL,
+  PRIMARY KEY (`admin_id`),
+  CONSTRAINT `FK_admin` FOREIGN KEY (`admin_id`) REFERENCES `registration` (`reg_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `admin`
+--
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES ('MA1411302-545985');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `assessment`
 --
 
@@ -78,6 +102,36 @@ LOCK TABLES `class_schedule` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `create_account`
+--
+
+DROP TABLE IF EXISTS `create_account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `create_account` (
+  `username_` varchar(16) NOT NULL,
+  `password_` varchar(16) NOT NULL,
+  `secret_question` varchar(30) NOT NULL,
+  `secret_answer` varchar(30) NOT NULL,
+  `user_type` varchar(10) DEFAULT NULL,
+  `account_id` varchar(16) NOT NULL,
+  PRIMARY KEY (`username_`),
+  KEY `FK_create_user` (`account_id`),
+  CONSTRAINT `FK_create_user` FOREIGN KEY (`account_id`) REFERENCES `registration` (`reg_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `create_account`
+--
+
+LOCK TABLES `create_account` WRITE;
+/*!40000 ALTER TABLE `create_account` DISABLE KEYS */;
+INSERT INTO `create_account` VALUES ('admin','admin','admin','admin','admin','MA1411302-545985'),('student','student','student','student','student','MS1411301-657755'),('teacher','teacher','teacher','teacher','teacher','MT1411303-789121');
+/*!40000 ALTER TABLE `create_account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `create_ol_exercise`
 --
 
@@ -130,33 +184,6 @@ CREATE TABLE `create_questions` (
 LOCK TABLES `create_questions` WRITE;
 /*!40000 ALTER TABLE `create_questions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `create_questions` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `create_user`
---
-
-DROP TABLE IF EXISTS `create_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `create_user` (
-  `username_` varchar(16) NOT NULL,
-  `password_` varchar(16) NOT NULL,
-  `secret_question` varchar(30) NOT NULL,
-  `secret_answer` varchar(30) NOT NULL,
-  `user_type` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`username_`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `create_user`
---
-
-LOCK TABLES `create_user` WRITE;
-/*!40000 ALTER TABLE `create_user` DISABLE KEYS */;
-INSERT INTO `create_user` VALUES ('parent','parent','parent','parent','parent'),('student','student','student','student','student'),('teacher','teacher','teacher','teacher','teacher');
-/*!40000 ALTER TABLE `create_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -240,11 +267,8 @@ DROP TABLE IF EXISTS `parent`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `parent` (
   `parentID` varchar(16) NOT NULL,
-  `p_lname` varchar(20) NOT NULL,
-  `p_fname` varchar(20) NOT NULL,
-  `p_mname` varchar(20) DEFAULT NULL,
-  `p_gender` varchar(6) DEFAULT NULL,
-  PRIMARY KEY (`parentID`)
+  PRIMARY KEY (`parentID`),
+  CONSTRAINT `FK_parent` FOREIGN KEY (`parentID`) REFERENCES `registration` (`reg_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -254,6 +278,7 @@ CREATE TABLE `parent` (
 
 LOCK TABLES `parent` WRITE;
 /*!40000 ALTER TABLE `parent` DISABLE KEYS */;
+INSERT INTO `parent` VALUES ('MP1411304-789451');
 /*!40000 ALTER TABLE `parent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,6 +329,35 @@ LOCK TABLES `rating` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `registration`
+--
+
+DROP TABLE IF EXISTS `registration`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `registration` (
+  `reg_id` varchar(16) NOT NULL,
+  `reg_lname` varchar(30) NOT NULL,
+  `reg_fname` varchar(30) NOT NULL,
+  `reg_mname` varchar(30) DEFAULT NULL,
+  `reg_gender` varchar(6) DEFAULT NULL,
+  `reg_status` varchar(10) DEFAULT NULL,
+  `reg_birthday` date NOT NULL,
+  PRIMARY KEY (`reg_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registration`
+--
+
+LOCK TABLES `registration` WRITE;
+/*!40000 ALTER TABLE `registration` DISABLE KEYS */;
+INSERT INTO `registration` VALUES ('MA1411302-545985','Arandia ','Darryl','Eda','Male','single','1993-12-05'),('MP1411304-789451','Arandia','Erised Faith','Mizaki','Female','married','1994-07-07'),('MS1411301-657755','Himura','Kenshin','Battousai','Male','single','1993-12-05'),('MT1411303-789121','Arandia','Emilia Eliza','Eda','Female','married','1957-09-12');
+/*!40000 ALTER TABLE `registration` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `section`
 --
 
@@ -335,15 +389,13 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
   `student_lrn` varchar(16) NOT NULL,
-  `s_lname` varchar(20) NOT NULL,
-  `s_fname` varchar(20) NOT NULL,
-  `s_mname` varchar(20) DEFAULT NULL,
-  `s_gender` varchar(6) DEFAULT NULL,
-  `s_birthday` date NOT NULL,
+  `grade_level` varchar(20) DEFAULT NULL,
+  `section` varchar(20) DEFAULT NULL,
   `parentID` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`student_lrn`),
-  KEY `FK_student` (`parentID`),
-  CONSTRAINT `FK_student` FOREIGN KEY (`parentID`) REFERENCES `parent` (`parentID`)
+  KEY `FK2_student` (`parentID`),
+  CONSTRAINT `FK1_student` FOREIGN KEY (`student_lrn`) REFERENCES `registration` (`reg_id`),
+  CONSTRAINT `FK2_student` FOREIGN KEY (`parentID`) REFERENCES `parent` (`parentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -353,6 +405,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` VALUES ('MS1411301-657755','3','Rizal','MP1411304-789451');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,12 +441,9 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teacher` (
   `teacherID` varchar(16) NOT NULL,
-  `t_lname` varchar(20) NOT NULL,
-  `t_fname` varchar(20) NOT NULL,
-  `t_mname` varchar(20) DEFAULT NULL,
-  `t_gender` varchar(6) DEFAULT NULL,
-  `t_birthday` date NOT NULL,
-  PRIMARY KEY (`teacherID`)
+  `t_position` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`teacherID`),
+  CONSTRAINT `FK_teacher` FOREIGN KEY (`teacherID`) REFERENCES `registration` (`reg_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -403,6 +453,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
+INSERT INTO `teacher` VALUES ('MT1411303-789121','Teacher3');
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -439,6 +490,34 @@ LOCK TABLES `teacher_load` WRITE;
 /*!40000 ALTER TABLE `teacher_load` DISABLE KEYS */;
 /*!40000 ALTER TABLE `teacher_load` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `write_announcement`
+--
+
+DROP TABLE IF EXISTS `write_announcement`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `write_announcement` (
+  `teacherID` varchar(16) NOT NULL,
+  `t_loadID` int(11) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `message` varchar(255) NOT NULL,
+  PRIMARY KEY (`teacherID`,`t_loadID`,`date_created`),
+  KEY `Fk2_write_ann` (`t_loadID`),
+  CONSTRAINT `FK1_write_ann` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`teacherID`),
+  CONSTRAINT `Fk2_write_ann` FOREIGN KEY (`t_loadID`) REFERENCES `teacher_load` (`t_loadID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `write_announcement`
+--
+
+LOCK TABLES `write_announcement` WRITE;
+/*!40000 ALTER TABLE `write_announcement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `write_announcement` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -449,4 +528,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-29 22:57:02
+-- Dump completed on 2014-11-30 23:00:07
