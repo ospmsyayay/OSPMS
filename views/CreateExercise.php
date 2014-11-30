@@ -306,9 +306,9 @@
 						<br/>
 					<label>Choices:</label>
 					<?php 
-					$rows=4;
+					$rows=1;
 					$counter=0;
-					while($counter<4)
+					while($counter<1)
 					{
 					?>
 						<br/>
