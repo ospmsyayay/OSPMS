@@ -8,72 +8,14 @@
         
 		<title>Online Student Performance Monitoring System</title>
         <!--<link rel="stylesheet" type="text/css" href="views/bootstrap.min.css"/>-->
-        <link href="views/carousel.css" rel="stylesheet"/>
+
 		<link href="views/bootstrap.css" rel="stylesheet"/>
         <link href="views/exDesign.css" rel="stylesheet"/>
 	</head>
     
 	<body>
 <div class="header-wrapper">
-
-<div id="t-page-header" class="header shadow">
-
-	<div id="t-page-header-inner" class="navbar navbar-default header-inner shadow" role="navigation" > 
-		
-        <div class="container">
-            <div id="t-page-header-content" class="navbar-header header-content">
-					<div class="navbar-header">
-						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="user-dropdown">
-						  <span class="sr-only">Toggle navigation</span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						  <span class="icon-bar"></span>
-						</button>
-						<!--<a class="navbar-brand" href="#">Project Name</a>-->
-					  </div>
-					  
-                    <ul class="nav navbar-nav">
-                      <li>
-    						<a class="navbar-brand" href="index.php?r=lss">Home</a>
-    					</li>
-    					<li>
-    						<a class="navbar-brand" href="index.php?r=lss&tr=trp">Progress</a>
-    					</li>
-                        <li>
-    						<a class="navbar-brand" href="index.php?r=lss&tr=tre">Encode</a>
-    					</li>
-                        <li>
-    						<a class="navbar-brand" href="#">Reports</a>
-    					</li>
-				
-				    </ul>
-                      <img src="views/res/teacher.jpg" class="img-rounded shadow profile-teacher-img" />
-			
-					<div id="user-dropdown" class="dropdown"> 
-						<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"> 
-							<span class="caret"></span> 
-						</button> 
-							<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"> 
-								<li role="presentation"> 
-								<a role="menuitem" tabindex="-1" href="#">Account Settings</a> </li>
-									<li class="divider"></li>
-								<li role="presentation"> <a role="menuitem" tabindex="-1" href="#">Profile</a> </li> 
-									<li class="divider"></li>
-								<li role="presentation"> <a role="menuitem" tabindex="-1" href="#"> Settings </a> </li> 
-									<li class="divider"></li>
-								<li role="presentation"> <a role="menuitem" tabindex="-1" href="#"> Help </a> </li> 
-									<li class="divider"></li>	
-								<li role="presentation" class="divider"></li> 
-								<li role="presentation"> <a role="menuitem" tabindex="-1" href="index.php?">Logout</a> </li> 
-							</ul> 
-							
-							
-					</div>
-			</div><!--header content-->
-	
-	</div><!-- /.container-->
-	</div><!--header-inner-->
-</div><!--/#header-->   
+	<?php include "views/parts/navi-bar-teacher.php";?>
 </div><!--header-wrapper-->
 
 <div class="viewport">
@@ -81,255 +23,65 @@
 		<div class="container">
 			<div class="left-wrapper">
 				<div class="left-column" >
-					 <div id="thumbnail-teacher">
+					<div id="thumbnail-teacher">
 						<img src="views/res/teacher.jpg" class="img-rounded shadow" id="thumbnail-teacher-img"/>
 						<a href="#" class="navbar-link" ><h5 id="greetings-teacher">Hi, Teacher</h5></a>
 					</div> 
-					
 					<div id="subject-list">
-						<h3 id="subject-list-title">Subjects</h3>
-						<div class="panel-group" id="accordion">
-											<div class="panel panel-default">
+						<h4 id="subject-list-title"><i class="glyphicon glyphicon-book"></i> Subjects</h4> 
+						
+						
+										
+					<div class="panel-group" id="Menu1">
+				<?php 
+						
+						?>
+							<div class="panel panel-default">
 											  <div class="panel-heading">
 												<h4 class="panel-title">
-												  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-														Math
-												  </a>
+												  <?php echo '<a data-toggle="collapse" data-parent="#Menu1" href="#MathSubmenu1">
+												  <i class="glyphicon glyphicon-paperclip"></i>Math
+												  <i class="glyphicon glyphicon-chevron-down"></i></a>';?>
+												  
 												</h4>
 											  </div>
-											  <div id="collapseOne" class="panel-collapse collapse in">
-												<div class="panel-body">
-													<!--//Grade level-->
-																	
-																	  <div class="panel-heading">
-																		<h4 class="panel-title">
-																		  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list">
-																				Grade 3 level
-																		  </a>
-																		</h4>
-																	  </div>
-																	  <div id="collapseOne-list" class="panel-collapse collapse in">
-																		<div class="panel-body">
-																				<!--//sections-->
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list1">
-																								Section 1
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list1" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-																						
-																						
-																						
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list2">
-																								Section 2
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list2" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																					
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list3">
-																								Section 3
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list3" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-
-																				
-																				<!--//sections-->	
-																		</div>
-																	  </div>
+												<?php echo '<div id="MathSubmenu1" class="panel-collapse collapse">'; ?>
+														<div class="panel-body">
+															<!--//Grade level-->
 															
-													<!--//Grade level-->
-												</div>
-											  </div>
-											</div>
-											<div class="panel panel-default">
-											  <div class="panel-heading">
-												<h4 class="panel-title">
-												  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-													English
-												  </a>
-												</h4>
-											  </div>
-											  <div id="collapseTwo" class="panel-collapse collapse">
-												<div class="panel-body">
-														<!--//Grade level-->
-																	
-																	  <div class="panel-heading">
-																		<h4 class="panel-title">
-																		  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list">
-																				Grade 3 level
-																		  </a>
-																		</h4>
-																	  </div>
-																	  <div id="collapseOne-list" class="panel-collapse collapse in">
-																		<div class="panel-body">
-																				<!--//sections-->
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list1">
-																								Section 1
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list1" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-																						
-																						
-																						
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list2">
-																								Section 2
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list2" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																					
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list3">
-																								Section 3
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list3" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-
-																				
-																				<!--//sections-->	
-																		</div>
-																	  </div>
-															
-													<!--//Grade level-->
-												</div>
-											  </div>
-											</div>
-											<div class="panel panel-default">
-											  <div class="panel-heading">
-												<h4 class="panel-title">
-												  <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-													Mapeh
-												  </a>
-												</h4>
-											  </div>
-											  <div id="collapseThree" class="panel-collapse collapse">
-												<div class="panel-body">
-													<!--//Grade level-->
-																	
-																	  <div class="panel-heading">
-																		<h4 class="panel-title">
-																		  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list">
-																				Grade 3 level
-																		  </a>
-																		</h4>
-																	  </div>
-																	  <div id="collapseOne-list" class="panel-collapse collapse in">
-																		<div class="panel-body">
-																				<!--//sections-->
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list1">
-																								Section 1
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list1" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-																						
-																						
-																						
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list2">
-																								Section 2
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list2" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																					
-																						
-																						
-																						  <div class="panel-heading">
-																							<h4 class="panel-title">
-																							  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne-list-list3">
-																								Section 3
-																							  </a>
-																							</h4>
-																						  </div>
-																						  <div id="collapseOne-list-list3" class="panel-collapse collapse">
-																							<div class="panel-body">
-																							 
-																							</div>
-																						  </div>
-																						
-
-																				
-																				<!--//sections-->	
-																		</div>
-																	  </div>
-															
-													<!--//Grade level-->
-												</div>
-											  </div>
-											</div>
-										  </div>
+																<div class="panel-heading">
+																	<h4 class="panel-title">
+																		<?php echo '<a data-toggle="collapse" data-parent="#MathSubmenu1" href="#MathSubmenu2">
+																			<i class="glyphicon glyphicon-pushpin"></i> Grade 3
+																			<i class="glyphicon glyphicon-chevron-down"></i>';?>
+																		</a>
+																	</h4>
+																</div>
+																			<?php echo '<div id="MathSubmenu2" class="panel-collapse collapse">';?>				
+																				<div class="panel-body">
+																					<!--sections-->
+																					<div class="panel-heading">
+																						<h4 class="panel-title">
+																							<a href="#">
+																								<i class="glyphicon glyphicon-pencil"></i> Section 1
+				
+																							</a>
+																						</h4>
+																					</div>
+																				</div>
+																			</div>
+														</div><!--//Grade level-->
+												</div>			
+							</div>	
+						 <?php 
+						 
+						 
+					 ?>
+						</div>	
+					 
 					</div><!--subject-list-->
-				</div><!--left-column-->
-			</div><!--left-wrapper-->	
+				</div>
+			</div><!--left-wrapper-->
 			<div class="right-wrapper">
 					<div class="right-column">
 						
@@ -365,7 +117,6 @@
 
   <script src="views/jquery.min.js"></script>
         <script src="views/transition.js"></script>
-        <script src="views/carousel.js"></script>
         <script src="views/jquery.min.js"></script>
         <script src="views/bootstrap.min.js"></script>
 		<script src="views/tab.js"></script>

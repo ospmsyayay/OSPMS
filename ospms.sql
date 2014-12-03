@@ -50,7 +50,7 @@ CREATE TABLE `assessment` (
   `assessmentID` varchar(16) NOT NULL,
   `teacherID` varchar(16) DEFAULT NULL,
   `student_lrn` varchar(16) DEFAULT NULL,
-  `ratingID` varchar(16) DEFAULT NULL,
+  `ratingID` varchar(3) DEFAULT NULL,
   `parentID` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`assessmentID`),
   KEY `FK_assessment1` (`teacherID`),
@@ -71,34 +71,6 @@ CREATE TABLE `assessment` (
 LOCK TABLES `assessment` WRITE;
 /*!40000 ALTER TABLE `assessment` DISABLE KEYS */;
 /*!40000 ALTER TABLE `assessment` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `class_schedule`
---
-
-DROP TABLE IF EXISTS `class_schedule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `class_schedule` (
-  `class_sched_ID` varchar(16) NOT NULL DEFAULT '',
-  `sectionID` varchar(16) DEFAULT NULL,
-  `student_lrn` varchar(16) DEFAULT NULL,
-  PRIMARY KEY (`class_sched_ID`),
-  KEY `FK_class_schedule1` (`sectionID`),
-  KEY `FK_class_schedule2` (`student_lrn`),
-  CONSTRAINT `FK_class_schedule1` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`),
-  CONSTRAINT `FK_class_schedule2` FOREIGN KEY (`student_lrn`) REFERENCES `student` (`student_lrn`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `class_schedule`
---
-
-LOCK TABLES `class_schedule` WRITE;
-/*!40000 ALTER TABLE `class_schedule` DISABLE KEYS */;
-/*!40000 ALTER TABLE `class_schedule` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,7 +99,7 @@ CREATE TABLE `create_account` (
 
 LOCK TABLES `create_account` WRITE;
 /*!40000 ALTER TABLE `create_account` DISABLE KEYS */;
-INSERT INTO `create_account` VALUES ('admin','admin','admin','admin','admin','MA1411302-545985'),('student','student','student','student','student','MS1411301-657755'),('teacher','teacher','teacher','teacher','teacher','MT1411303-789121');
+INSERT INTO `create_account` VALUES ('admin','admin','admin','admin','admin','MA1411302-545985'),('parent','parent','parent','parent','parent','MP1411304-789451'),('student','student','student','student','student','MS1411301-657755'),('teacher','teacher','teacher','teacher','teacher','MT1411303-789121');
 /*!40000 ALTER TABLE `create_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,8 +166,8 @@ DROP TABLE IF EXISTS `grade_level`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `grade_level` (
-  `levelID` varchar(1) NOT NULL,
-  `level_description` varchar(20) DEFAULT NULL,
+  `levelID` varchar(5) NOT NULL,
+  `level_description` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`levelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -206,6 +178,7 @@ CREATE TABLE `grade_level` (
 
 LOCK TABLES `grade_level` WRITE;
 /*!40000 ALTER TABLE `grade_level` DISABLE KEYS */;
+INSERT INTO `grade_level` VALUES ('G0003','Grade 3');
 /*!40000 ALTER TABLE `grade_level` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +326,7 @@ CREATE TABLE `registration` (
 
 LOCK TABLES `registration` WRITE;
 /*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-INSERT INTO `registration` VALUES ('MA1411302-545985','Arandia ','Darryl','Eda','Male','single','1993-12-05'),('MP1411304-789451','Arandia','Erised Faith','Mizaki','Female','married','1994-07-07'),('MS1411301-657755','Himura','Kenshin','Battousai','Male','single','1993-12-05'),('MT1411303-789121','Arandia','Emilia Eliza','Eda','Female','married','1957-09-12');
+INSERT INTO `registration` VALUES ('MA1411302-545985','Arandia','Darryl','Eda','Male','single','1993-12-05'),('MP1411304-789451','Arandia','Erised Faith','Mizaki','Female','married','1993-07-07'),('MS1411301-657755','Arandia','Kenshin','Mizaki','Male','single','2009-07-07'),('MT1411303-789121','Arandia','Emilia Eliza','Eda','Female','married','1957-09-12');
 /*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -365,7 +338,7 @@ DROP TABLE IF EXISTS `section`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `section` (
-  `sectionID` varchar(16) NOT NULL,
+  `sectionID` varchar(10) NOT NULL,
   `section_name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`sectionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -377,6 +350,7 @@ CREATE TABLE `section` (
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
+INSERT INTO `section` VALUES ('ESEC-15965','Rizal');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -389,7 +363,7 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
   `student_lrn` varchar(16) NOT NULL,
-  `grade_level` varchar(20) DEFAULT NULL,
+  `grade_level` varchar(10) DEFAULT NULL,
   `section` varchar(20) DEFAULT NULL,
   `parentID` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`student_lrn`),
@@ -405,7 +379,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('MS1411301-657755','3','Rizal','MP1411304-789451');
+INSERT INTO `student` VALUES ('MP1411304-789451','Grade 3','Rizal','MP1411304-789451');
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +391,7 @@ DROP TABLE IF EXISTS `subject_`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subject_` (
-  `subjectID` varchar(16) NOT NULL,
+  `subjectID` varchar(8) NOT NULL,
   `subject_title` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`subjectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -429,6 +403,7 @@ CREATE TABLE `subject_` (
 
 LOCK TABLES `subject_` WRITE;
 /*!40000 ALTER TABLE `subject_` DISABLE KEYS */;
+INSERT INTO `subject_` VALUES ('EAS-0001','Math'),('EAS-0002','English'),('EAS-0003','Mapeh');
 /*!40000 ALTER TABLE `subject_` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -453,7 +428,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES ('MT1411303-789121','Teacher3');
+INSERT INTO `teacher` VALUES ('MT1411303-789121','Teacher 3');
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,9 +442,9 @@ DROP TABLE IF EXISTS `teacher_load`;
 CREATE TABLE `teacher_load` (
   `t_loadID` int(11) NOT NULL AUTO_INCREMENT,
   `teacherID` varchar(16) DEFAULT NULL,
-  `subjectID` varchar(16) DEFAULT NULL,
-  `sectionID` varchar(16) DEFAULT NULL,
-  `levelID` varchar(1) DEFAULT NULL,
+  `subjectID` varchar(8) DEFAULT NULL,
+  `sectionID` varchar(10) DEFAULT NULL,
+  `levelID` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`t_loadID`),
   KEY `FK_teacher_load1` (`teacherID`),
   KEY `FK_teacher_load2` (`subjectID`),
@@ -528,4 +503,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-30 23:00:07
+-- Dump completed on 2014-12-01  9:24:57
