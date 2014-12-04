@@ -21,67 +21,7 @@
 <div class="viewport">
 	<div class="content">
 		<div class="container">
-			<div class="left-wrapper">
-				<div class="left-column" >
-					<div id="thumbnail-teacher">
-						<img src="views/res/teacher.jpg" class="img-rounded shadow" id="thumbnail-teacher-img"/>
-						<a href="#" class="navbar-link" ><h5 id="greetings-teacher">Hi, Teacher</h5></a>
-					</div> 
-					<div id="subject-list">
-						<h4 id="subject-list-title"><i class="glyphicon glyphicon-book"></i> Subjects</h4> 
-						
-						
-										
-					<div class="panel-group" id="Menu1">
-				<?php 
-						
-						?>
-							<div class="panel panel-default">
-											  <div class="panel-heading">
-												<h4 class="panel-title">
-												  <?php echo '<a data-toggle="collapse" data-parent="#Menu1" href="#MathSubmenu1">
-												  <i class="glyphicon glyphicon-paperclip"></i>Math
-												  <i class="glyphicon glyphicon-chevron-down"></i></a>';?>
-												  
-												</h4>
-											  </div>
-												<?php echo '<div id="MathSubmenu1" class="panel-collapse collapse">'; ?>
-														<div class="panel-body">
-															<!--//Grade level-->
-															
-																<div class="panel-heading">
-																	<h4 class="panel-title">
-																		<?php echo '<a data-toggle="collapse" data-parent="#MathSubmenu1" href="#MathSubmenu2">
-																			<i class="glyphicon glyphicon-pushpin"></i> Grade 3
-																			<i class="glyphicon glyphicon-chevron-down"></i>';?>
-																		</a>
-																	</h4>
-																</div>
-																			<?php echo '<div id="MathSubmenu2" class="panel-collapse collapse">';?>				
-																				<div class="panel-body">
-																					<!--sections-->
-																					<div class="panel-heading">
-																						<h4 class="panel-title">
-																							<a href="#">
-																								<i class="glyphicon glyphicon-pencil"></i> Section 1
-				
-																							</a>
-																						</h4>
-																					</div>
-																				</div>
-																			</div>
-														</div><!--//Grade level-->
-												</div>			
-							</div>	
-						 <?php 
-						 
-						 
-					 ?>
-						</div>	
-					 
-					</div><!--subject-list-->
-				</div>
-			</div><!--left-wrapper-->
+			<?php include "views/parts/side-bar-teacher.php";?>
 			<div class="right-wrapper">
 					<div class="right-column">
 						

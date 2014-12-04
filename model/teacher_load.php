@@ -49,81 +49,16 @@ function get_sectionByTeacherIDSubjectIDLevelID($teacherID,$subjectID,$levelID)
 	
 	return $join_result;
 }
-
 /*
-function get_subjectID($teacherID)
-{
-include "config/conn.php";
-
-	$sql="Select subjectID from teacher_load where teacherID ='".$teacherID."'";
-	
-	$subjectID=mysqli_query($cxn,$sql);
-	
-	return $subjectID;
-
-
-}
-
-function get_subjectDesc($subjectID)
-{
-include "config/conn.php";
-
-	$sql="Select subject_title from subject_ where subjectID = '".$subjectID."'";
-	
-	$subjectDesc = mysqli_query($cxn,$sql);
-	
-	return $subjectDesc;
-
-
-}
-
-function get_levelID($teacherID)
-{
-	include "config/conn.php";
-
-	$sql="Select levelID from teacher_load where teacherID ='".$teacherID."'";
-
-	$levelID=mysqli_query($cxn,$sql);
-	
-	return $levelID;
-}
-
-function get_levelDesc($levelID)
-{
-include "config/conn.php";
-
-	$sql="Select level_description from grade_level where levelID = '".$levelID."'";
-	
-	$levelDesc = mysqli_query($cxn,$sql);
-	
-	return $levelDesc;
-
-
-}
-
-function get_sectionID($teacherID)
+function get_t_loadID($account_id)
 {
 	include "config/conn.php";
 	
-	$sql="Select sectionID from teacher_load where teacherID='".$teacherID."'";
+	$sql="";
 	
-	$sectionID=mysqli_query($cxn,$sql);
 	
-	return $sectionID;
 
-}
 
-function get_sectionDesc($sectionID)
-{
-	include "config/conn.php";
-	
-	$sql="Select sectionNo,section_name from section where sectionID = '".$sectionID."'";
-	
-	$section_name=mysqli_query($cxn,$sql);
-	
-	return $section_name;
-	
-	
 
 }
 */

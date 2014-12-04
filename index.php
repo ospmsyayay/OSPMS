@@ -106,6 +106,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 					           $_SESSION['username'] = $username;
 							   $_SESSION['user_type'] = $user_type;
 							   $_SESSION['account_id'] = $account_id;
+							   
+									$profilename=get_profilename($_SESSION['account_id']);
+									 $profilename=mysqli_fetch_array($profilename);
+									 
+										$_SESSION['reg_lname']=$profilename['reg_lname'];
+										$_SESSION['reg_fname']=$profilename['reg_fname'];
+							
 					           header("Location: index.php?r=lss&ss");
 					           exit();
 				            }
@@ -144,27 +151,29 @@ include "model/teacher_load.php";
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 		{
 			
-			
-			$t_loadID = get_t_loadID($_SESSION['account_id']);
-			$row = mysqli_fetch_array($t_loadID);
-			$_SESSION['loadID'] = $row[0];
-			
-			$_SESSION['date_created']= date("Y-m-d H:i:s");  
-				
-			$announcement_inserted=write_announcement($_SESSION['account_id'],$_SESSION['loadID'],
-														$_SESSION['date_created'],$_POST['message']);
-			if($announcement_inserted)
+			$message=$_POST['message'];
+			if(!empty($message))
 			{
-				//
+				//$t_loadID = get_t_loadID($_SESSION['account_id']);
+				//$row = mysqli_fetch_array($t_loadID);
+				//$_SESSION['loadID'] = $row[0];
+				
+				$_SESSION['date_created']= date("Y-m-d H:i:s");  
+					
+				$announcement_inserted=write_announcement($_SESSION['account_id'],1,
+															$_SESSION['date_created'],$message);
+				if($announcement_inserted)
+				{
+					//
+				}
+				header("Location: index.php?r=lss&w");
 			}
-			header("Location: index.php?r=lss&w");
-			
 			
 		}
 		
-		$_SESSION['TeacherLoad']=array();
 		
-	
+		
+		$_SESSION['TeacherLoad']=array();
 		
 		$subjects=get_subjectByTeacherID($_SESSION['account_id']);
 	
@@ -172,16 +181,14 @@ include "model/teacher_load.php";
 		{
 			
 			$subjectIdPasser=array();
-			$teacherload_passer=array();
 		
 			$subjectIdPasser['subjectID']=$travsubjects['subjectID'];
+			
 			$subject_title = $travsubjects['subject_title'];
-			$teacherload_passer[$subject_title]=null;
+					
+			$_SESSION['TeacherLoad'][$subject_title ]=null;
 			
-			
-			$_SESSION['TeacherLoad'][]['subject_title']=$teacherload_passer;
-			
-	/*
+	
 					$grades=get_gradeByTeacherIDSubjectID($_SESSION['account_id'],$subjectIdPasser['subjectID']);
 								
 						while($travgrades = mysqli_fetch_array($grades))
@@ -189,31 +196,23 @@ include "model/teacher_load.php";
 							$levelIdPasser=array();
 							
 							$levelIdPasser['levelID']=$travgrades['levelID'];
+							
 							$level_description=$travgrades ['level_description'];
-									
-							$teacherload_passer[$level_description]=null;
+												
+								$_SESSION['TeacherLoad'][$subject_title][$level_description]=null;
 							
-								$_SESSION['TeacherLoad'][]['subject_title'][$subject_title]=$teacherload_passer;
-							
-									
-									
-											$section=get_sectionByTeacherIDSubjectIDLevelID($_SESSION['account_id'],$subjectIdPasser['subjectID'],$levelIdPasser['levelID']);
+								
+									$section=get_sectionByTeacherIDSubjectIDLevelID($_SESSION['account_id'],$subjectIdPasser['subjectID'],$levelIdPasser['levelID']);
 											
-											while($travsection=mysqli_fetch_array($section))
+											while($travsectionNo=mysqli_fetch_array($section))
 											{
 											
-												$teacherload_passer=array();
+												$sectionNo=$travsectionNo['sectionNo'];
+												$sectionName=$travsectionNo['section_name'];
 												
-												$passer['sectionNo']=$travsection['sectionNo'];
-												$passer['section_name']=$travsection['section_name'];
-					
-												$teacherload_passer[]=$passer;
-												
-						
-												$_SESSION['TeacherLoad'][]['subject_title'][$subject_title]
-																			[$level_description]=$teacherload_passer;
-																			
-												
+												$_SESSION['TeacherLoad'][$subject_title][$level_description][$sectionNo][$sectionName]=null;
+									
+											
 												
 											}
 					
@@ -223,30 +222,21 @@ include "model/teacher_load.php";
 		
 					
 
-	*/		
+	
 		}
-				
-					
-				
-	/*
-				$_SESSION['subjects']=array();
-					foreach($_SESSION['TeacherLoad'] as $row)
-					{
-						foreach($row as $subjects)
-						{
-							foreach($subjects as $subjectName => $grade)
-							{
-								$passer=array();
-								$passer['subjectName']=$subjectName;
-								$_SESSION['subjects'][]=$passer;
-							}
-						}
-					
-					}	
-	*/
+		$display_message=array();
+		$post_message=get_announcement($_SESSION['account_id']);
+		
+		while($post = mysqli_fetch_array($post_message))
+		{
+			$passer=array();
 			
-					
+			$passer['date_created']=$post['date_created'];
+			$passer['message']=$post['message'];
 			
+			$display_message[]=$passer;
+		
+		}
 	include "views/Teachers_Page.php";	
 	
 }

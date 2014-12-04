@@ -41,88 +41,7 @@
 <div class="viewport">
 	<div class="content">
 		<div class="container">
-			<div class="left-wrapper">
-				<div class="left-column" >
-					<div id="thumbnail-teacher">
-						<img src="views/res/teacher.jpg" class="img-rounded shadow" id="thumbnail-teacher-img"/>
-						<a href="#" class="navbar-link" ><h5 id="greetings-teacher">Hi, Teacher</h5></a>
-					</div> 
-					<div id="subject-list">
-						<h4 id="subject-list-title"><i class="glyphicon glyphicon-book"></i> Subjects</h4> 
-						
-						
-										
-					<div class="panel-group" id="Menu1">
-				<?php 
-						foreach($_SESSION['TeacherLoad'] as $row)
-						{
-							foreach($row as $subjects)
-							{
-								foreach($subjects as $subjectName => $grade)
-								{
-						?>
-							<div class="panel panel-default">
-											  <div class="panel-heading">
-												<h4 class="panel-title">
-												  <?php echo '<a data-toggle="collapse" data-parent="#Menu1" href="#'.$subjectName.'Submenu1">
-												  <i class="glyphicon glyphicon-paperclip"></i>'.$subjectName.'
-												  <i class="glyphicon glyphicon-chevron-down"></i></a>';?>
-												  
-												</h4>
-											  </div>
-											  <!--   -->
-												<?php 
-												
-												//foreach($grade as $gradelevel => $section)
-												//{
-												
-										echo '<div id="'.$subjectName.'Submenu1" class="panel-collapse collapse">'; ?>
-														<div class="panel-body">
-															<!--//Grade level-->
-															
-																<div class="panel-heading">
-																	<h4 class="panel-title">
-																		<?php echo '<a data-toggle="collapse" data-parent="#'.$subjectName.'Submenu1" href="#'.$subjectName.'Submenu2">
-																			<i class="glyphicon glyphicon-pushpin"></i> Grade 3
-																			<i class="glyphicon glyphicon-chevron-down"></i>';?>
-																		</a>
-																	</h4>
-																</div>
-																 <!--   -->
-																<?php 
-																	
-																			
-																				echo '<div id="'.$subjectName.'Submenu2" class="panel-collapse collapse">';?>				
-																				<div class="panel-body">
-																					<!--sections-->
-																					<div class="panel-heading">
-																						<h4 class="panel-title">
-																							<a href="#">
-																								<i class="glyphicon glyphicon-pencil"></i> Section 1
-				
-																							</a>
-																						</h4>
-																					</div>
-																				</div>
-																			</div>
-																<!--    -->			
-														</div><!--//Grade level-->
-												</div>			
-							</div>	
-		<?php 
-					
-		
-		
-												//}
-								}
-							}	
-						}
-					 ?>
-						</div>	
-					 
-					</div><!--subject-list-->
-				</div>
-			</div><!--left-wrapper-->
+			<?php include "views/parts/side-bar-teacher.php";?>
 			
 			<div class="right-wrapper">
 				<div class="right-column">
@@ -191,30 +110,21 @@
 					<div id="post-container">
 						<div id="post-title">Latest Post</div>
 						
-						<div class="post-messages">
+					<?php 	
+					foreach($display_message as $display)
+					{
+						echo '<div class="post-messages">
 							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
-							<p class="post-teacher">Please Review Rational Numbers</p>
-						</div>
+							<p class="post-teacher">'.$display['message'].'</p>
+							<p class="post-teacher">'.$display['date_created'].'</p>
+						</div>';
 						
-						<div class="post-messages">
+					}	
+					?>	
+						<!--<div class="post-messages">
 							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
 							<img src="views/res/sample_lecture.jpg" class="img-rounded shadow sample_lecture" />
-						</div>
-						
-						<div class="post-messages">
-							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
-							<p class="post-teacher">Congratulations section 1 you top the NAT Examination</p>
-						</div>
-						
-						<div class="post-messages">
-							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
-							<p class="post-teacher">We'll have meeting tomorrow</p>
-						</div>
-						
-						<div class="post-messages">
-							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
-							<p class="post-teacher">No Classes Tomorrow</p>
-						</div>
+						</div>-->
 						
 					</div><!--post-container-->
 						
@@ -236,6 +146,7 @@
 
 		<script src="views/tooltip.js"></script>
 		<script src="views/popover.js"></script>
+		<script src="views/msgbox.js"></script>
 		<script src="views/scripts.js"></script>
 	
 		<!-- JavaScript Test -->
@@ -262,7 +173,8 @@ $(function () {
   }
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
-</script>					
+</script>
+				
 	</body>
     
 
