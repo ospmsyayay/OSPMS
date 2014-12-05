@@ -441,15 +441,15 @@ border-bottom-left-radius: 2px;
 	margin-bottom: 14px;
 }
 
+
 #subject-list-title
 {
-	font-size: 15px;
-	font-weight: 400;
-	background: none repeat scroll 0% 0% #757F93;
+
+	background-color: #efefef;
 	border-radius: 2px 2px 0px 0px;
-	color: #FFF;
 	overflow: visible;
 }
+
 
 .right-column
 {

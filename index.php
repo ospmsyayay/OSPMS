@@ -99,11 +99,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		              {
 			             $user_pass = $row ['password_'];
 						 $user_type = $row ['user_type'];
+						 $account_id= $row ['account_id'];
 	                  }
 		                  if ($password==$user_pass)
                             {
 					           $_SESSION['username'] = $username;
 							   $_SESSION['user_type'] = $user_type;
+							   $_SESSION['account_id'] = $account_id;
+							   
+									$profilename=get_profilename($_SESSION['account_id']);
+									 $profilename=mysqli_fetch_array($profilename);
+									 
+										$_SESSION['reg_lname']=$profilename['reg_lname'];
+										$_SESSION['reg_fname']=$profilename['reg_fname'];
+							
 					           header("Location: index.php?r=lss&ss");
 					           exit();
 				            }
@@ -135,8 +144,109 @@ function signup()
 
 function tpage()
 {
-	include "views/Teachers_Page.php";
+
+include "model/announcement.php";
+include "model/teacher_load.php";
+
+	if ($_SERVER["REQUEST_METHOD"] == "POST") 
+		{
+			
+			$message=$_POST['message'];
+			if(!empty($message))
+			{
+				//$t_loadID = get_t_loadID($_SESSION['account_id']);
+				//$row = mysqli_fetch_array($t_loadID);
+				//$_SESSION['loadID'] = $row[0];
+				
+				$_SESSION['date_created']= date("Y-m-d H:i:s");  
+					
+				$announcement_inserted=write_announcement($_SESSION['account_id'],1,
+															$_SESSION['date_created'],$message);
+				if($announcement_inserted)
+				{
+					//
+				}
+				header("Location: index.php?r=lss&w");
+			}
+			
+		}
+		
+		
+		
+		$_SESSION['TeacherLoad']=array();
+		
+		$subjects=get_subjectByTeacherID($_SESSION['account_id']);
+	
+		while($travsubjects = mysqli_fetch_array($subjects))
+		{
+			
+			$subjectIdPasser=array();
+		
+			$subjectIdPasser['subjectID']=$travsubjects['subjectID'];
+			
+			$subject_title = $travsubjects['subject_title'];
+					
+			$_SESSION['TeacherLoad'][$subject_title ]=null;
+			
+	
+					$grades=get_gradeByTeacherIDSubjectID($_SESSION['account_id'],$subjectIdPasser['subjectID']);
+								
+						while($travgrades = mysqli_fetch_array($grades))
+						{
+							$levelIdPasser=array();
+							
+							$levelIdPasser['levelID']=$travgrades['levelID'];
+							
+							$level_description=$travgrades ['level_description'];
+												
+								$_SESSION['TeacherLoad'][$subject_title][$level_description]=null;
+							
+								
+									$section=get_sectionByTeacherIDSubjectIDLevelID($_SESSION['account_id'],$subjectIdPasser['subjectID'],$levelIdPasser['levelID']);
+											
+											while($travsectionNo=mysqli_fetch_array($section))
+											{
+											
+												$sectionNo=$travsectionNo['sectionNo'];
+												$sectionName=$travsectionNo['section_name'];
+												
+												$_SESSION['TeacherLoad'][$subject_title][$level_description][$sectionNo][$sectionName]=null;
+									
+											
+												
+											}
+					
+						}
+						
+			
+		
+					
+
+	
+		}
+		$display_message=array();
+		$post_message=get_announcement($_SESSION['account_id']);
+		
+		while($post = mysqli_fetch_array($post_message))
+		{
+			$passer=array();
+			
+			$passer['date_created']=$post['date_created'];
+			$passer['message']=$post['message'];
+			
+			$display_message[]=$passer;
+		
+		}
+	include "views/Teachers_Page.php";	
+	
 }
+
+
+	
+
+
+
+
 function tpage_progress()
 {
 	include "views/Teachers_Page_Progress.php";
@@ -203,6 +313,7 @@ function multiplechoice()
 		{
 			$_SESSION['question_no']=1;
 		}
+		
 		$_SESSION['question_no']++;
 		
 		$question=$answer=$exerciseName="";

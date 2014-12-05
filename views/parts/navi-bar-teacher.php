@@ -6,36 +6,33 @@
 		
         <div class="container">
             <div id="t-page-header-content" class="navbar-header header-content">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                       <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+					<div class="navbar-header">
+						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="user-dropdown">
+						  <span class="sr-only">Toggle navigation</span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						  <span class="icon-bar"></span>
+						</button>
+						<!--<a class="navbar-brand" href="#">Project Name</a>-->
+					  </div>
+					  
                     <ul class="nav navbar-nav">
                         <li>
-    						<a href="index.php?request=tpage">HOME</a>
+    						<a class="navbar-brand" href="index.php?r=lss">Home</a>
     					</li>
     					<li>
-    						<a href="index.php?request=tpage_progress">PROGRESS</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=trp">Progress</a>
     					</li>
                         <li>
-    						<a href="index.php?request=tpage_encode">ENCODE</a>
+    						<a class="navbar-brand" href="index.php?r=lss&tr=tre">Encode</a>
     					</li>
                         <li>
-    						<a href="#">REPORTS</a>
+    						<a class="navbar-brand" href="#">Reports</a>
     					</li>
 				
 				    </ul>
-                    
-                    <div class="form-group" id="nav-search"> 
-							<input type="text" class="form-control" placeholder="Search" />
-								<span id="search-icon"class="glyphicon glyphicon-search"></span>
-					</div>
-		
-                    
-                     <button type="button" class="btn btn-default btn-lg" id="user"> <span class="glyphicon glyphicon-user"></span> User </button>
-          
+                   
+                    <img src="views/res/teacher.jpg" class="img-rounded shadow profile-teacher-img" />
 					<div id="user-dropdown" class="dropdown"> 
 						<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"> 
 							<span class="caret"></span> 
@@ -51,10 +48,12 @@
 								<li role="presentation"> <a role="menuitem" tabindex="-1" href="#"> Help </a> </li> 
 									<li class="divider"></li>	
 								<li role="presentation" class="divider"></li> 
-								<li role="presentation"> <a role="menuitem" tabindex="-1" href="#">Logout</a> </li> 
+								<li role="presentation"> <a role="menuitem" tabindex="-1" href="index.php?">Logout</a> </li> 
 							</ul> 
 					</div>
+					
 			</div><!--header content-->
+	
 		</div><!-- /.container-->
 	</div><!--header-inner-->
-</div><!--/#header-->  
+</div><!--/#header-->   
