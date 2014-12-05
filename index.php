@@ -841,11 +841,7 @@ function fillintheblanks()
 		
 }
 
-function testing()
-{
 
-	include "views/TESTING/Admin_Page.php";
-}
 /*
 function logout()
 {
