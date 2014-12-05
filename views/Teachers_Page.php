@@ -30,7 +30,14 @@
 				alert('Message Posted');
 		<?php	
 			}
+
+			if(isset($_GET['l']))
+			{
 		?>
+			alert('Lecture File Saved');
+		<?php 
+			}
+		?>	
 		}
 		</script>
 		
@@ -47,8 +54,9 @@
 				<div class="right-column">
 					<div id="postbox-container">
 						<ul id="myTab" class="nav nav-tabs">
-								<li class="active"><a href="#announcement" data-toggle="tab">Write Announcement</a></li>
-								<li><a href="#lecture-exercises" data-toggle="tab">Post Lecture/Exercises </a></li>
+								<li class="active"><a href="#announcement" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span>Write Announcement</a></li>
+								<li><a href="#lecture-exercises" data-toggle="tab"><span class="glyphicon glyphicon-upload"></span>Post Lecture Files </a></li>
+								<li><a href="#create-exercises" data-toggle="tab" ><span class="glyphicon glyphicon-tasks"></span>Create Online Exercise</a></li>
 								<li><a href="#attendance-sheet" data-toggle="tab">Attendance Sheet</a></li>
 							  </ul>
 							  <div id="myTabContent" class="tab-content">
@@ -57,37 +65,76 @@
 									<div class="msgbox">
 										<div class="row">
 											<div class="col-md-12 col-md-12">
-												<div class="panel panel-default">
+											
 													<div class="panel-body">                
 														<form accept-charset="UTF-8" action="" method="POST">
 															<textarea class="form-control counted" name="message" placeholder="Type in your announcement" 
-															rows="5" style="margin-bottom:10px;"></textarea>
-															<h6 class="pull-right" id="counter">320 characters remaining</h6>
-															<button class="btn btn-info" type="submit">Post New Message</button>
+															rows="2" required="required"></textarea>
+															<h6 class="pull-left" id="counter">320 characters remaining</h6>
+															<button class="pull-right btn btn-info" type="submit"><span class="glyphicon glyphicon-send"></span>Post</button>
 														</form>
 														
 													</div>
-												</div>
+											
 											</div>
 										</div>
 									</div>
 								
 								</div>
 								<div class="tab-pane fade" id="lecture-exercises">
-									<div class="btn_align">
+							
+										<!--<button type="button" class="btn btn-default btn-cons" onclick="window.location.href='index.php?r=lss&tr=ce'">Create Exercises</button>-->
 									
-										<button type="button" class="btn btn-default btn-cons" onclick="window.location.href='index.php?r=lss&tr=ce'">Create Exercises</button>
-										
-										<br/>
-										
-										<input type="file" id="files" name="files[]" multiple />
-										<output id="list"></output>
-										
+										<div class="msgbox">
+											<div class="row">
+												<div class="col-md-12 col-md-12">
+													
+														<div class="panel-body">       
+															<form method="POST" accept-charset="UTF-8" enctype="multipart/form-data">
+																	<textarea class="form-control counted" name="lecture-caption" placeholder="Create Title/Caption" 
+																				rows="2" required="required"></textarea>
+																	
+																	<br/>	
+																	<input type="file" name="upload_lecture" id="upload_lecture" 
+																	accept="*"/>
+
+																	<button class="pull-right btn btn-info" type="submit"><span class="glyphicon glyphicon-send"></span>Post</button>
+															</form>
+														</div>
+												
+												</div>
+											</div>
+									
 	
 									</div>
 								  
 								</div>  
-								 
+								
+								<div class="tab-pane fade" id="create-exercises">
+									<div class="msgbox">
+											<div class="row">
+												<div class="col-md-12 col-md-12">
+													
+														<div class="panel-body text-center "> 
+
+																<div class="btn-group text-center " data-toggle="buttons-radio">
+																  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=mic'"><span class="glyphicon glyphicon-edit"></span>Multiple Choice</button>
+																  
+																  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=te'"><span class="glyphicon glyphicon-edit"></span>True or False</button>
+																  
+																  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=me'"><span class="glyphicon glyphicon-edit"></span>Matching Type</button>
+																  
+																  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=fs'"><span class="glyphicon glyphicon-edit"></span>Fill in the blank</button>
+																</div>
+
+															</div>
+												
+												</div>
+											</div>
+									
+	
+									</div>							
+								</div>	
 								
 								<div class="tab-pane fade" id="attendance-sheet">
 									<!--<img src="views/res/attendance.png" class="img-rounded shadow attendance" />-->	
@@ -120,6 +167,7 @@
 						</div>';
 						
 					}	
+					
 					?>	
 						<!--<div class="post-messages">
 							<img src="views/res/teacher.jpg" class="img-rounded shadow post-message-img" />
@@ -137,7 +185,6 @@
 	</div><!--content-->
 </div><!--viewport-->
        
-		<script src="views/jquery.min.js"></script>
         <script src="views/transition.js"></script>
         <script src="views/jquery.min.js"></script>
         <script src="views/bootstrap.min.js"></script>
@@ -157,23 +204,6 @@ $(function () {
 })
 </script>
 
-<script>
-  function handleFileSelect(evt) {
-	var files = evt.target.files; // FileList object
-
-	// files is a FileList of File objects. List some properties.
-	var output = [];
-	for (var i = 0, f; f = files[i]; i++) {
-	  output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-				  f.size, ' bytes, last modified: ',
-				  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
-				  '</li>');
-	}
-	document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
-
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
-</script>
 				
 	</body>
     

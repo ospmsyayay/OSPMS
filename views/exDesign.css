@@ -914,10 +914,6 @@ width: 600px;
 .ui-group-buttons .btn:first-child{margin-left:0;border-top-left-radius:.25em;border-bottom-left-radius:.25em;padding-right:15px}
 .ui-group-buttons .btn:last-child{border-top-right-radius:.25em;border-bottom-right-radius:.25em;padding-left:15px}
 
-.btn_align
-{
-text-align: center;
-}
 
 .btn-outline {
     background-color: transparent;
@@ -1013,16 +1009,6 @@ border: 2px solid #009;
 }
 
 /**onlineExerMenu**/
-#createExerMenuHandler
-{
-	 
-	 width:100%;
-	 display:relative;
-	 top:10px;
-	 left:450px;
-	 right:500px;
-	 bottom:10px;
-}
 
 .onlineExerMenu{
      margin: 10px 10px 10px 10px;
@@ -1035,9 +1021,9 @@ border: 2px solid #009;
 
 .onlineExerMenu:hover {
 	cursor: pointer;
-	-webkit-transform: scale(2, 2);
-    -ms-transform: scale(2, 2);
-    transform: scale(2, 2);
+	-webkit-transform: scale(1.5, 1.5);
+    -ms-transform: scale(1.5, 1.5);
+    transform: scale(1.5, 1.5);
     transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s; /* Safari */
     box-shadow: 10px 10px 5px #888888;
@@ -1081,6 +1067,27 @@ border: 2px solid #009;
 	
 	
 }
+
+/*Teacher's Page Side Bar custom*/
+/*.active-subjectmenu{
+
+background-color: rgba(157, 205, 255, 0.5);
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+
+}*/
+
+/*.subjectmenu-hover{
+
+background-color: rgba(187, 181, 207, 0.4);
+border: 1px solid transparent;
+border-radius: 4px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+}*/
+
 
 /*Create Exercise Multiple Choice*/
 /*

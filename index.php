@@ -60,17 +60,23 @@ else
 											}
 										}
 										break;
+						
 										
 					}
 					
 				}
 				break;
 										
-							
+		case 'testing':testing();break;
+
 				default: header("Location: index.php");
 			}
 		}
+function testing()
+{
 
+	include "views/TESTING/Admin_Page.php";
+}
 function login()
 {
 		
@@ -147,27 +153,62 @@ function tpage()
 
 include "model/announcement.php";
 include "model/teacher_load.php";
+include "model/insert_upload.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 		{
-			
-			$message=$_POST['message'];
-			if(!empty($message))
-			{
-				//$t_loadID = get_t_loadID($_SESSION['account_id']);
-				//$row = mysqli_fetch_array($t_loadID);
-				//$_SESSION['loadID'] = $row[0];
-				
-				$_SESSION['date_created']= date("Y-m-d H:i:s");  
-					
-				$announcement_inserted=write_announcement($_SESSION['account_id'],1,
-															$_SESSION['date_created'],$message);
-				if($announcement_inserted)
+		
+		if(isset($_POST['message']))
+		   {
+		   	
+				$message=$_POST['message'];
+				if(!empty($message))
 				{
-					//
+					//$t_loadID = get_t_loadID($_SESSION['account_id']);
+					//$row = mysqli_fetch_array($t_loadID);
+					//$_SESSION['loadID'] = $row[0];
+					
+					$message_date_created= date("Y-m-d H:i:s");  
+						
+					$announcement_inserted=write_announcement($_SESSION['account_id'],1,
+																$message_date_created,$message);
+					if($announcement_inserted)
+					{
+						//
+					}
+					header("Location: index.php?r=lss&w");
 				}
-				header("Location: index.php?r=lss&w");
+
 			}
+			
+			if(isset($_POST['lecture-caption']))
+		   	{
+				$file_caption=$_POST['lecture-caption'];
+					
+				
+				if(!empty($file_caption))
+				{
+					$filename=lecture_uploaded();
+					
+					if(!empty($filename))
+					{
+						
+						$upload_date= date("Y-m-d H:i:s"); 
+					
+
+						$lecture_inserted=insert_upload($_SESSION['account_id'],1,$upload_date,$file_caption,$filename);
+					
+
+						if($lecture_inserted)
+						{
+							//
+						}
+						header("Location:index.php?r=lss&l");
+					}
+
+				}	
+			}
+			
 			
 		}
 		
@@ -242,7 +283,46 @@ include "model/teacher_load.php";
 }
 
 
-	
+function lecture_uploaded()
+{
+	$name = $_FILES['upload_lecture']['name'];
+	$tmp_name = $_FILES['upload_lecture']['tmp_name'];
+	$allowedextension = array('gif', 'jpeg', 'jpg','pjpeg','x-png','png',
+							  'doc','docx','dot','docm','docb','pdf'
+							  ,'xla','xlc','xlm','xls','xlt','xlw','xlsx','xlsm','xltx','xltm','xlsb','xlam','xll',
+							  'pot','pps','ppt','pptx','pptm','potx','potm','ppam','ppsx','ppsm','sldx','sldm');
+	$temp = explode(".",$name);
+	$nameoffile = $temp[0];
+	$extension = end($temp);
+	if(in_array($extension,$allowedextension))
+	{
+		if($_FILES['upload_lecture']['error']>0)
+		{
+			echo "<script>alert('".$_FILES['upload_lecture']['error']."')</script>";
+		}
+		else
+		{
+			if(file_exists('model/uploaded_files/'.$name))
+			{
+				echo "<script>alert('File already exist')</script>";
+			}
+			else
+			{
+				$location = "model/uploaded_files/";
+				if(move_uploaded_file($tmp_name,$location.$name))
+				{
+					return $name;
+				}
+
+				return $name;
+			}
+		}
+	}
+	else
+	{
+		echo "<script>alert('invalid file')</script>";
+	}
+}	
 
 
 

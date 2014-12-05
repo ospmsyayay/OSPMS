@@ -56,17 +56,24 @@
 		?>
 		}
 		</script>
-	
-		<div class="btn-group" id="createExerMenuHandler" data-toggle="buttons-radio">
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=mic'">Multiple Choice</button>
-		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=te'">True or False</button>
-		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=me'">Matching Type</button>
-		  
-		  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=fs'">Fill in the blank</button>
+		<div class="row">
+			<div class="col-md-12 col-md-12">
+														
+					<div class="panel-body text-center "> 
+						<div class="btn-group text-center" data-toggle="buttons-radio">
+						  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=mic'"><span class="glyphicon glyphicon-edit"></span>Multiple Choice</button>
+						  
+						  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=te'"><span class="glyphicon glyphicon-edit"></span>True or False</button>
+						  
+						  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=me'"><span class="glyphicon glyphicon-edit"></span>Matching Type</button>
+						  
+						  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss&tr=ce&cc=fs'"><span class="glyphicon glyphicon-edit"></span>Fill in the blank</button>
+
+						  <button type="button" class="btn btn-primary onlineExerMenu" onclick="window.location.href='index.php?r=lss'"><span class="glyphicon glyphicon-log-out"></span>Go Back</button>
+						</div>
+					</div>
+			</div>		
 		</div>
-		
 		<?php
 			
 			if (isset($_GET['cc']))
