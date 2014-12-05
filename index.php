@@ -65,7 +65,8 @@ else
 					
 				}
 				break;
-										
+				
+		case 'testing':testing();break;		
 							
 				default: header("Location: index.php");
 			}
@@ -759,6 +760,11 @@ function fillintheblanks()
 		
 }
 
+function testing()
+{
+
+	include "views/TESTING/Admin_Page.php";
+}
 /*
 function logout()
 {
