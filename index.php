@@ -275,7 +275,9 @@ include "model/insert_upload.php";
 			$passer=array();
 			
 			$passer['date_created']=$post['date_created'];
+			$passer['timespan']=get_time_difference_php($passer['date_created']);
 			$passer['message']=$post['message'];
+
 			
 			$display_message[]=$passer;
 		

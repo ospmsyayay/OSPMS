@@ -146,7 +146,7 @@ CREATE TABLE `create_questions` (
   PRIMARY KEY (`questionNo`),
   KEY `FK_create_questions` (`exerciseID`),
   CONSTRAINT `FK_create_questions` FOREIGN KEY (`exerciseID`) REFERENCES `create_ol_exercise` (`exerciseID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -525,7 +525,7 @@ CREATE TABLE `write_announcement` (
 
 LOCK TABLES `write_announcement` WRITE;
 /*!40000 ALTER TABLE `write_announcement` DISABLE KEYS */;
-INSERT INTO `write_announcement` VALUES ('MT1411303-789121',1,'2014-12-05 18:37:48','Welcome Students! '),('MT1411303-789121',1,'2014-12-05 18:38:05','\r\nPlease Review Rational Numbers');
+INSERT INTO `write_announcement` VALUES ('MT1411303-789121',1,'2014-12-05 18:37:48','Welcome Students! '),('MT1411303-789121',1,'2014-12-05 18:38:05','\r\nPlease Review Rational Numbers'),('MT1411303-789121',1,'2014-12-06 06:07:20','Hi there\r\n'),('MT1411303-789121',1,'2014-12-06 10:55:51','inserted time'),('MT1411303-789121',1,'2014-12-06 12:36:50','Nice job students');
 /*!40000 ALTER TABLE `write_announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -538,4 +538,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-05 19:01:15
+-- Dump completed on 2014-12-06 12:43:57

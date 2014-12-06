@@ -37,7 +37,7 @@
 						  
 								  <div class="carousel-inner">
 									<div class="item active">
-									  <img src="views/res/carousel_1.jpg" alt="First slide"/>
+									  <img src="views/res/carousel_5.jpg" alt="First slide"/>
 									  <div class="container">
 										<div class="carousel-caption">
 										  
@@ -46,7 +46,7 @@
 									</div>
 									
 									<div class="item">
-									  <img src="views/res/carousel_2.jpg" alt="Second slide"/>
+									  <img src="views/res/carousel_1.jpg" alt="Second slide"/>
 									  <div class="container">
 										<div class="carousel-caption">
 										  
@@ -55,7 +55,7 @@
 									</div>
 									
 									<div class="item">
-									  <img src="views/res/carousel_3.jpg" alt="Third slide"/>
+									  <img src="views/res/carousel_2.jpg" alt="Third slide"/>
 									  <div class="container">
 										<div class="carousel-caption">
 										 
@@ -64,7 +64,7 @@
 									</div>
 									
 									 <div class="item">
-									  <img src="views/res/carousel_4.jpg" alt="Fourth slide"/>
+									  <img src="views/res/carousel_3.jpg" alt="Fourth slide"/>
 									  <div class="container">
 										<div class="carousel-caption">
 										 
@@ -73,7 +73,7 @@
 									</div>
 									
 									 <div class="item">
-									  <img src="views/res/carousel_5.jpg" alt="Fifth slide"/>
+									  <img src="views/res/carousel_4.jpg" alt="Fifth slide"/>
 									  <div class="container">
 										<div class="carousel-caption">
 										 
