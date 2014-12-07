@@ -13,18 +13,6 @@ include "config/conn.php";
 
 }
 
-function get_announcement($teacherID)
-{
-	include "config/conn.php";
-	
-	$sql="Select date_created, message from write_announcement where teacherID='".$teacherID."'";
-	
-	$post_announcement= mysqli_query($cxn,$sql);
-	
-	return $post_announcement;
-	
-
-}
 
 /*
 function clean_input($input){

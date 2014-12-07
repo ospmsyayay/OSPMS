@@ -23,13 +23,13 @@
 					
 								
 						?>
-							<div class="panel panel-default">
-											  <div class="panel-heading">
+							<div class="panel panel-default subjectmenu">
+											  <div class="panel-heading ">
 												<h4 class="panel-title">
 												  <?php 
 												  
-												  echo '<a data-toggle="collapse" data-parent="#Menu1" href="#'.$subjectName.'GradeMenu" onclick="setClickedSubject()">
-												  <i class="glyphicon glyphicon-paperclip"></i>'.$subjectName.'
+												  echo '<a data-toggle="collapse" data-parent="#Menu1" href="#'.$subjectName.'GradeMenu" id="'.$subjectName.'" class="toHighlight">
+												  <span class="glyphicon glyphicon-map-marker"></span>'.$subjectName.'
 												  <i class="glyphicon glyphicon-chevron-down"></i></a>';?>
 												  
 												</h4>
@@ -50,9 +50,9 @@
 										
 										
 												?>
-																<div class="panel-heading">
+																<div class="panel-heading subjectmenu">
 																	<h4 class="panel-title">
-																		<?php echo '<a data-toggle="collapse" data-parent="#'.$subjectName.'GradeMenu" href="#'.$subjectName.$gradelevel.'">
+																		<?php echo '<a id="'.$gradelevel.'" class="toHighlight" data-toggle="collapse" data-parent="#'.$subjectName.'GradeMenu" href="#'.$subjectName.$gradelevel.'" >
 																			<i class="glyphicon glyphicon-pushpin"></i> '.$gradelevel.'
 																			<i class="glyphicon glyphicon-chevron-down"></i>';?>
 																		</a>
@@ -77,15 +77,11 @@
 																		{	
 																?>					
 																					<!--sections-->
-																					<div class="panel-heading">
+																					<div class="panel-heading subjectmenu">
 																						<h4 class="panel-title">
 																						<?php
-																							echo '<a href="#">';
-																							
-																							echo '<i class="glyphicon glyphicon-pencil"></i>'.$sectionNo.'-'.$section_name.'';
-																						?>		
-																							</a>
-																						
+																							echo '<a href="#" id="'.$section_name.'" class="toHighlight" ><i class="glyphicon glyphicon-pencil"></i>'.$sectionNo.'-'.$section_name.'</a>';
+																						?>	
 																						</h4>
 																					
 																					</div>

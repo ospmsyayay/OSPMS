@@ -178,7 +178,7 @@ CREATE TABLE `grade_level` (
 
 LOCK TABLES `grade_level` WRITE;
 /*!40000 ALTER TABLE `grade_level` DISABLE KEYS */;
-INSERT INTO `grade_level` VALUES ('G0003','Grade 3');
+INSERT INTO `grade_level` VALUES ('G0002','Grade2'),('G0003','Grade3');
 /*!40000 ALTER TABLE `grade_level` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,6 +256,37 @@ INSERT INTO `parent` VALUES ('MP1411304-789451');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `post_lecture`
+--
+
+DROP TABLE IF EXISTS `post_lecture`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `post_lecture` (
+  `teacherID` varchar(16) NOT NULL,
+  `t_loadID` int(11) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `file_caption` varchar(100) NOT NULL,
+  `file_path` varchar(100) NOT NULL,
+  `file_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`teacherID`,`t_loadID`,`date_created`),
+  KEY `FK2_post_lecture` (`t_loadID`),
+  CONSTRAINT `FK1_post_lecture` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`teacherID`),
+  CONSTRAINT `FK2_post_lecture` FOREIGN KEY (`t_loadID`) REFERENCES `teacher_load` (`t_loadID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `post_lecture`
+--
+
+LOCK TABLES `post_lecture` WRITE;
+/*!40000 ALTER TABLE `post_lecture` DISABLE KEYS */;
+INSERT INTO `post_lecture` VALUES ('MT1411303-789121',1,'2014-12-06 21:21:58','Image','model/uploaded_files/','Koala.jpg'),('MT1411303-789121',1,'2014-12-06 22:21:59','Adobe','model/uploaded_files/','Music Composition for Dummies.pdf'),('MT1411303-789121',1,'2014-12-06 23:21:32','Microsoft','model/uploaded_files/','ERD.docx'),('MT1411303-789121',1,'2014-12-06 23:30:05','Powerpoint','model/uploaded_files/','SOFTWARE PROJECT MODELS.ppt'),('MT1411303-789121',1,'2014-12-07 00:14:11','OSPMS','model/uploaded_files/','OSPMS_FINAL.docx'),('MT1411303-789121',1,'2014-12-07 09:57:48','Memo','model/uploaded_files/','MEMORANDUM PUNCTUALITY_2014.doc'),('MT1411303-789121',1,'2014-12-07 11:50:07','K12','model/uploaded_files/','K12 Encoding Sheets .xlsx'),('MT1411303-789121',1,'2014-12-07 14:04:07','jquery','model/uploaded_files/','jQuery-Mobile-Bootstrap-Theme-master.zip'),('MT1411303-789121',1,'2014-12-07 14:05:23','gif','model/uploaded_files/','preview.gif'),('MT1411303-789121',1,'2014-12-07 14:06:19','swf','model/uploaded_files/','miniGolf.swf');
+/*!40000 ALTER TABLE `post_lecture` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `post_ol_exer`
 --
 
@@ -326,7 +357,7 @@ CREATE TABLE `registration` (
 
 LOCK TABLES `registration` WRITE;
 /*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-INSERT INTO `registration` VALUES ('MA1411302-545985','Arandia','Darryl','Eda','Male','single','1993-12-05'),('MP1411304-789451','Arandia','Erised Faith','Mizaki','Female','married','1993-07-07'),('MS1411301-657755','Arandia','Kenshin','Mizaki','Male','single','2009-07-07'),('MT1411303-789121','Arandia','Emilia Eliza','Eda','Female','married','1957-09-12');
+INSERT INTO `registration` VALUES ('MA1411302-545985','Arandia','Darryl','Eda','Male','single','1993-12-05'),('MP1411304-789451','Arandia','Erised Faith','Mizaki','Female','married','1993-07-07'),('MS1411301-657755','Arandia','Kenshin','Mizaki','Male','single','2009-07-07'),('MS1412039-789777','Dalan','Justin','Caballo','Male','single','2004-11-20'),('MS1412067-978989','Lazaro','Raphael John','Santos','Male','single','2005-04-09'),('MS1412075-546651','Alcantara','Jerome','Luna','Male','single','2004-01-01'),('MS1412078-784265','Eroma','Joaquin','Gargantiel','Male','single','2004-03-08'),('MS1412081-655155','Cabanas','Ireal Jhun','Ocava','Male','single','2005-02-28'),('MS1412092-878789','Calda','Jeremiah','Yuson','Male','single','2005-03-14'),('MS1412147-897711','Delos Santos','John Mario','Bayrante','Male','single','2005-07-26'),('MS1412236-798777','Casacop','Deniell Reye','Vitug','Male','single','2005-05-13'),('MT1411303-789121','Arandia','Emilia Eliza','Eda','Female','married','1957-09-12');
 /*!40000 ALTER TABLE `registration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -339,6 +370,7 @@ DROP TABLE IF EXISTS `section`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `section` (
   `sectionID` varchar(10) NOT NULL,
+  `sectionNo` varchar(2) DEFAULT NULL,
   `section_name` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`sectionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -350,7 +382,7 @@ CREATE TABLE `section` (
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES ('ESEC-15965','Rizal');
+INSERT INTO `section` VALUES ('ESEC-12347','6','Santan'),('ESEC-15634','3','Mabini'),('ESEC-45645','2','Bonifacio'),('ESEC-45648','5','Gumamela'),('ESEC-46544','4','Sampaguita'),('ESEC-77777','1','Rizal');
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -362,10 +394,11 @@ DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `student` (
-  `student_lrn` varchar(16) NOT NULL,
+  `student_lrn` varchar(16) NOT NULL DEFAULT '',
   `grade_level` varchar(10) DEFAULT NULL,
   `section` varchar(20) DEFAULT NULL,
   `parentID` varchar(16) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`student_lrn`),
   KEY `FK2_student` (`parentID`),
   CONSTRAINT `FK1_student` FOREIGN KEY (`student_lrn`) REFERENCES `registration` (`reg_id`),
@@ -379,7 +412,7 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('MP1411304-789451','Grade 3','Rizal','MP1411304-789451');
+INSERT INTO `student` VALUES ('MP1411304-789451','Grade 3','Rizal','MP1411304-789451',NULL),('MS1412039-789777','Grade 3','Bonifacio','MP1411304-789451',NULL),('MS1412067-978989','Grade 3','Santan','MP1411304-789451',NULL),('MS1412075-546651','Grade 2','Rizal','MP1411304-789451',NULL),('MS1412078-784265','Grade 3','Gumamela','MP1411304-789451',NULL),('MS1412081-655155','Grade 3','Rizal','MP1411304-789451',NULL),('MS1412092-878789','Grade 3','Mabini','MP1411304-789451',NULL),('MS1412147-897711','Grade 3','Sampaguita','MP1411304-789451',NULL),('MS1412236-798777','Grade 3','Bonifacio','MP1411304-789451',NULL);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,7 +436,7 @@ CREATE TABLE `subject_` (
 
 LOCK TABLES `subject_` WRITE;
 /*!40000 ALTER TABLE `subject_` DISABLE KEYS */;
-INSERT INTO `subject_` VALUES ('EAS-0001','Math'),('EAS-0002','English'),('EAS-0003','Mapeh');
+INSERT INTO `subject_` VALUES ('EAS-0001','Math'),('EAS-0002','English'),('EAS-0003','Science'),('EAS-0004','Hekasi'),('EAS-0005','PE'),('EAS-0006','GMRC');
 /*!40000 ALTER TABLE `subject_` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,8 +448,9 @@ DROP TABLE IF EXISTS `teacher`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `teacher` (
-  `teacherID` varchar(16) NOT NULL,
+  `teacherID` varchar(16) NOT NULL DEFAULT '',
   `t_position` varchar(20) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`teacherID`),
   CONSTRAINT `FK_teacher` FOREIGN KEY (`teacherID`) REFERENCES `registration` (`reg_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -428,7 +462,7 @@ CREATE TABLE `teacher` (
 
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES ('MT1411303-789121','Teacher 3');
+INSERT INTO `teacher` VALUES ('MT1411303-789121','Teacher 3',NULL);
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -445,6 +479,9 @@ CREATE TABLE `teacher_load` (
   `subjectID` varchar(8) DEFAULT NULL,
   `sectionID` varchar(10) DEFAULT NULL,
   `levelID` varchar(5) DEFAULT NULL,
+  `sched_days` varchar(7) DEFAULT NULL,
+  `sched_time` varchar(11) DEFAULT NULL,
+  `room` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`t_loadID`),
   KEY `FK_teacher_load1` (`teacherID`),
   KEY `FK_teacher_load2` (`subjectID`),
@@ -454,7 +491,7 @@ CREATE TABLE `teacher_load` (
   CONSTRAINT `FK_teacher_load2` FOREIGN KEY (`subjectID`) REFERENCES `subject_` (`subjectID`),
   CONSTRAINT `FK_teacher_load3` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`),
   CONSTRAINT `FK_teacher_load4` FOREIGN KEY (`levelID`) REFERENCES `grade_level` (`levelID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -463,6 +500,7 @@ CREATE TABLE `teacher_load` (
 
 LOCK TABLES `teacher_load` WRITE;
 /*!40000 ALTER TABLE `teacher_load` DISABLE KEYS */;
+INSERT INTO `teacher_load` VALUES (1,'MT1411303-789121','EAS-0001','ESEC-77777','G0003','MTWThF','8:00-9:00','JRF-Room225'),(2,'MT1411303-789121','EAS-0002','ESEC-45645','G0003','MTWThF','9:00-10:00','JRF-Room227'),(3,'MT1411303-789121','EAS-0003','ESEC-15634','G0003','MTWThF','10:00-11:00','JRF-Room228'),(4,'MT1411303-789121','EAS-0004','ESEC-46544','G0002','MTWThF','13:00-14:00','JRF-Auditorium'),(5,'MT1411303-789121','EAS-0005','ESEC-45648','G0002','MWF','14:00-15:00','JRF-Court'),(6,'MT1411303-789121','EAS-0006','ESEC-12347','G0002','TTh','15:00-16:00','JRF-Room544'),(7,'MT1411303-789121','EAS-0001','ESEC-45648','G0002','TTh','9:00-11:00','JRF-Room225'),(8,'MT1411303-789121','EAS-0002','ESEC-12347','G0002','TTh','13:00-15:00','JRF-Room777'),(9,'MT1411303-789121','EAS-0001','ESEC-45645','G0003','TTh','7:00-8:00','JRF-Room225');
 /*!40000 ALTER TABLE `teacher_load` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -491,6 +529,7 @@ CREATE TABLE `write_announcement` (
 
 LOCK TABLES `write_announcement` WRITE;
 /*!40000 ALTER TABLE `write_announcement` DISABLE KEYS */;
+INSERT INTO `write_announcement` VALUES ('MT1411303-789121',1,'2014-12-05 18:37:48','Welcome Students! '),('MT1411303-789121',1,'2014-12-05 18:38:05','\r\nPlease Review Rational Numbers'),('MT1411303-789121',1,'2014-12-06 06:07:20','Hi there\r\n'),('MT1411303-789121',1,'2014-12-06 10:55:51','inserted time'),('MT1411303-789121',1,'2014-12-06 12:36:50','Nice job students'),('MT1411303-789121',1,'2014-12-07 10:42:36','Downloadable is already working :)');
 /*!40000 ALTER TABLE `write_announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -503,4 +542,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-01  9:24:57
+-- Dump completed on 2014-12-07 14:07:15

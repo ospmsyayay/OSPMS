@@ -23,6 +23,7 @@ create table teacher(
 
 teacherID varchar(16) not null,
 t_position varchar(20),
+image varchar(100),
 constraint PK_teacher primary key (teacherID),
 constraint FK_teacher foreign key (teacherID) references registration(reg_id)
 );
@@ -45,6 +46,7 @@ student_lrn varchar(16) not null,
 grade_level varchar(10),
 section varchar(20),
 parentID varchar(16),
+image varchar(100),
 constraint PK_student primary key (student_lrn),
 constraint FK1_student foreign key (student_lrn) references registration(reg_id),
 constraint FK2_student foreign key (parentID) references parent(parentID)
@@ -224,5 +226,21 @@ create table write_announcement
   constraint PK_write_ann primary key (teacherID, t_loadID, date_created),
   constraint FK1_write_ann foreign key (teacherID) references teacher(teacherID),
   constraint Fk2_write_ann foreign key (t_loadID) references teacher_load(t_loadID)
+
+);
+
+drop table if exists post_lecture;
+create table post_lecture
+(
+  teacherID varchar(16) not null,
+  t_loadID int not null,
+  date_created datetime not null,
+  file_caption varchar(100) not null,
+  file_path varchar(100) not null,
+  file_name varchar(100) not null,
+  constraint PK_post_lecture primary key (teacherID, t_loadID, date_created),
+  constraint FK1_post_lecture foreign key (teacherID) references teacher(teacherID),
+  constraint FK2_post_lecture foreign key (t_loadID) references teacher_load(t_loadID)
+
 
 );
