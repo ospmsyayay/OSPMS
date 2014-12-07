@@ -44,7 +44,7 @@ else
 										else{
 											switch($_GET['st'])
 											{
-											
+												
 											}
 										}
 										break;
@@ -156,6 +156,7 @@ function tpage()
 include "model/announcement.php";
 include "model/teacher_load.php";
 include "model/insert_upload.php";
+include "model/get_post.php";
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") 
 		{
@@ -211,6 +212,15 @@ include "model/insert_upload.php";
 				}	
 			}
 			
+			if(isset($_POST['file_name']))
+			{
+				$file = $_POST['file_name'];
+				$mime=get_mime($file);
+				header('Content-type: '.$mime.'');
+				header('Content-Disposition: attachment; filename='.$file.'');
+				readfile('model/uploaded_files/'.$file.'');
+				exit();
+			}
 			
 		}
 		
@@ -267,7 +277,8 @@ include "model/insert_upload.php";
 
 	
 		}
-		$display_message=array();
+		//$display_message=array();
+		$display_box=array();
 		$post_message=get_announcement($_SESSION['account_id']);
 		
 		while($post = mysqli_fetch_array($post_message))
@@ -277,24 +288,89 @@ include "model/insert_upload.php";
 			$passer['date_created']=$post['date_created'];
 			$passer['timespan']=get_time_difference_php($passer['date_created']);
 			$passer['message']=$post['message'];
+			$passer['file_path']=null;
+			$passer['file']=null;
 
-			
-			$display_message[]=$passer;
+			$display_box[]=$passer;
 		
 		}
+
+		//$display_lecture_post=array();
+		$post_lecture=get_upload($_SESSION['account_id']);
+
+		while($post = mysqli_fetch_array($post_lecture))
+		{
+			$passer=array();
+
+			$passer['date_created']=$post['date_created'];
+			$passer['timespan']=get_time_difference_php($passer['date_created']);
+			$passer['message']=$post['file_caption'];
+			$passer['file_path']=$post['file_path'];
+			$passer['file']=$post['file_name'];
+
+			/*
+			foreach($display_box as $display)
+			{
+				if($display['date_created']<$passer['date_created'])
+				{
+
+					insert_to_array($display, $passer, $display_box);
+				}
+			}	
+			*/
+			$display_box[]=$passer;
+
+
+		}	
+
+
+
 	include "views/Teachers_Page.php";	
 	
 }
+/*
+function insert_to_array(&$edit_array, $insert_array, &$main_array)
+{
+	$temp=array();
+	$temp_remaining=array();
+	$temp[]=$edit_array;
+
+	$readyToInsert;
+	foreach($main_array as $displayBox)
+	{
+		if(empty($displayBox))
+		{
+			$readyToInsert=true;
+			continue;
+		}
+
+		if($readyToInsert)
+		{
+			$temp_remaining[]=$displayBox;
+		}
+	}
+
+	$edit_array['date_created']=$insert_array['date_created'];
+	$edit_array['timespan']=$insert_array['timespan'];
+	$edit_array['message']=$insert_array['message'];
+	$edit_array['image']=$insert_array['image'];
 
 
+
+}
+
+*/
 function lecture_uploaded()
 {
 	$name = $_FILES['upload_lecture']['name'];
 	$tmp_name = $_FILES['upload_lecture']['tmp_name'];
-	$allowedextension = array('gif', 'jpeg', 'jpg','pjpeg','x-png','png',
-							  'doc','docx','dot','docm','docb','pdf'
-							  ,'xla','xlc','xlm','xls','xlt','xlw','xlsx','xlsm','xltx','xltm','xlsb','xlam','xll',
-							  'pot','pps','ppt','pptx','pptm','potx','potm','ppam','ppsx','ppsm','sldx','sldm');
+	$allowedextension = array('gif', 'jpeg', 'jpg','png',
+							  'doc','docx','docm','docb','pdf','dotm','dotx',
+							  'xls','xlsx','xlsm','xltx','xltm','xlsb',
+							  'ppt','pptx','pptm','potx','potm','ppam','ppsx','ppsm','sldx','sldm',
+							  '7z','rar','swf','zip');
+
+
 	$temp = explode(".",$name);
 	$nameoffile = $temp[0];
 	$extension = end($temp);
@@ -329,7 +405,51 @@ function lecture_uploaded()
 }	
 
 
+function get_mime ($filename)
+{
+	$mime;
+	$temp = explode(".",$filename);
+	$nameoffile = $temp[0];
+	$extension = end($temp);
 
+	switch($extension)
+	{
+
+		case 'doc':$mime='application/msword';
+		case 'pdf':$mime='application/pdf';
+		/*case 'xls':$mime='application/vnd.ms-excel';
+		case 'xlsb':$mime='application/vnd.ms-excel.addin.macroenabled.12';
+		case 'xlsm':$mime='application/vnd.ms-excel.sheet.macroenabled.12';
+		case 'xltm':$mime='application/vnd.ms-excel.template.macroenabled.12';
+		case 'ppt':$mime='application/vnd.ms-powerpoint';
+		case 'ppam':$mime='application/vnd.ms-powerpoint.addin.macroenabled.12';
+		case 'pptm':$mime='application/vnd.ms-powerpoint.presentation.macroenabled.12';
+		case 'sldm':$mime='application/vnd.ms-powerpoint.slide.macroenabled.12';
+		case 'ppsm':$mime='application/vnd.ms-powerpoint.slideshow.macroenabled.12';
+		case 'potm':$mime='application/vnd.ms-powerpoint.template.macroenabled.12';
+		case 'docm':$mime='application/vnd.ms-word.document.macroenabled.12';
+		case 'dotm':$mime='application/vnd.ms-word.template.macroenabled.12';
+		case 'pptx':$mime='application/vnd.openxmlformats-officedocument.presentationml.presentation';
+		case 'sldx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slide';
+		case 'ppsx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slideshow';
+		case 'potx':$mime='application/vnd.openxmlformats-officedocument.presentationml.template';
+		case 'xlsx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';		
+		case 'xltx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.template';
+		case 'docx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+		case 'dotx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.template';
+		case '7z':$mime='application/x-7z-compressed';
+		case 'swf':$mime='application/x-shockwave-flash';
+		case 'zip':$mime='application/zip';
+		*/
+		case 'jpeg':
+		case 'jpg':$mime='image/jpeg';
+		case 'gif':$mime='image/gif';
+		case 'png':$mime='image/png';
+
+	}
+
+	return $mime;
+}
 
 function tpage_progress()
 {

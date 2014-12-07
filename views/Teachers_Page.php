@@ -166,7 +166,7 @@
 										<div id="message-container">
 
 											<?php 	
-											foreach($display_message as $display)
+											foreach($display_box as $display)
 											{
 											?>	
 
@@ -180,14 +180,43 @@
 														</div>
 
 														<div class="panel-body">
-															<p class="post-teacher"><?php echo $display['message']; ?> </p>
+															<h5 class="post-teacher"><span class="glyphicon glyphicon-pushpin pull-right"></span><?php echo $display['message']; ?> </h5>
 															
 														</div>
-													
+
+														<?php 
+															if(    (!empty($display['file_path'])) and (!empty($display['file'])) )
+															{
+														?>
+															<div class="panel-footer">
+																<form action="" method="post" name="download">
+																<?php echo '<div>
+																	<a href="#"><img src="'.$display['file_path'].$display['file'].'" class="img-thumbnail img-responsive post-lecture-image">
+														
+																	<p class="pull-left"><span class="glyphicon glyphicon-paperclip"></span>'.$display['file'].'</p>
+																					
+																	<input name="file_name" value="'.$display['file'].'" type="hidden"/>
+																
+																	<button class="pull-right btn btn-primary" type="submit">Download File <span class="glyphicon glyphicon-save"></span></button>
+																			</a>
+																		</div>	
+																';?>
+
+																</form>
+															</div>
+														<?php 
+															}
+															else
+															{	
+														?>
+															
 														<div class="panel-footer">
 															<span class="glyphicon glyphicon-fire"></span>
 															<span class="glyphicon glyphicon-tags pull-right"></span>
 														</div>
+														<?php 
+															}
+														?>
 														
 												</div>
 												

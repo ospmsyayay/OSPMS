@@ -29,7 +29,7 @@
 												  <?php 
 												  
 												  echo '<a data-toggle="collapse" data-parent="#Menu1" href="#'.$subjectName.'GradeMenu" id="'.$subjectName.'" class="toHighlight">
-												  <i class="glyphicon glyphicon-paperclip"></i>'.$subjectName.'
+												  <span class="glyphicon glyphicon-map-marker"></span>'.$subjectName.'
 												  <i class="glyphicon glyphicon-chevron-down"></i></a>';?>
 												  
 												</h4>

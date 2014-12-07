@@ -146,7 +146,7 @@ CREATE TABLE `create_questions` (
   PRIMARY KEY (`questionNo`),
   KEY `FK_create_questions` (`exerciseID`),
   CONSTRAINT `FK_create_questions` FOREIGN KEY (`exerciseID`) REFERENCES `create_ol_exercise` (`exerciseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,8 +266,9 @@ CREATE TABLE `post_lecture` (
   `teacherID` varchar(16) NOT NULL,
   `t_loadID` int(11) NOT NULL,
   `date_created` datetime NOT NULL,
-  `file_caption` varchar(255) NOT NULL,
-  `image_path` varchar(100) NOT NULL,
+  `file_caption` varchar(100) NOT NULL,
+  `file_path` varchar(100) NOT NULL,
+  `file_name` varchar(100) NOT NULL,
   PRIMARY KEY (`teacherID`,`t_loadID`,`date_created`),
   KEY `FK2_post_lecture` (`t_loadID`),
   CONSTRAINT `FK1_post_lecture` FOREIGN KEY (`teacherID`) REFERENCES `teacher` (`teacherID`),
@@ -281,6 +282,7 @@ CREATE TABLE `post_lecture` (
 
 LOCK TABLES `post_lecture` WRITE;
 /*!40000 ALTER TABLE `post_lecture` DISABLE KEYS */;
+INSERT INTO `post_lecture` VALUES ('MT1411303-789121',1,'2014-12-06 21:21:58','Image','model/uploaded_files/','Koala.jpg'),('MT1411303-789121',1,'2014-12-06 22:21:59','Adobe','model/uploaded_files/','Music Composition for Dummies.pdf'),('MT1411303-789121',1,'2014-12-06 23:21:32','Microsoft','model/uploaded_files/','ERD.docx'),('MT1411303-789121',1,'2014-12-06 23:30:05','Powerpoint','model/uploaded_files/','SOFTWARE PROJECT MODELS.ppt'),('MT1411303-789121',1,'2014-12-07 00:14:11','OSPMS','model/uploaded_files/','OSPMS_FINAL.docx');
 /*!40000 ALTER TABLE `post_lecture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,4 +540,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-06 12:43:57
+-- Dump completed on 2014-12-07  8:18:47

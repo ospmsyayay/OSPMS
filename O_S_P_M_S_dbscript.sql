@@ -233,8 +233,9 @@ create table post_lecture
   teacherID varchar(16) not null,
   t_loadID int not null,
   date_created datetime not null,
-  file_caption varchar(255) not null,
-  image_path varchar(100) not null,
+  file_caption varchar(100) not null,
+  file_path varchar(100) not null,
+  file_name varchar(100) not null,
   constraint PK_post_lecture primary key (teacherID, t_loadID, date_created),
   constraint FK1_post_lecture foreign key (teacherID) references teacher(teacherID),
   constraint FK2_post_lecture foreign key (t_loadID) references teacher_load(t_loadID)
