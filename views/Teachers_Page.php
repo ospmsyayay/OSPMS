@@ -96,10 +96,36 @@
 																			<textarea class="form-control counted" name="lecture-caption" placeholder="Create Title/Caption" 
 																						rows="1" required="required"></textarea>
 																			
-																			<input type="file" name="upload_lecture" id="upload_lecture" 
-																			accept="*" class="pull-left"/>
+																			<div class="choose-file-container">
 
-																			<button class="pull-right btn btn-info" type="submit"><span class="glyphicon glyphicon-send"></span>Post</button>
+																				<div style="position:relative;">
+																					<a class='btn btn-primary' href='javascript:;'>
+																						Choose File...
+																						<input type="file" style='position:absolute;
+																						z-index:2;
+																						top:0;
+																						left:0;
+																						filter: 
+																						alpha(opacity=0);
+																						-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+																						opacity:0;
+																						background-color:transparent;
+																						color:transparent;' 
+																						name="upload_lecture" size="40"  onchange='$("#upload-file-info").html($(this).val());'
+																						id="upload_lecture" accept="*" class="pull-left"/>
+																					</a>
+																					&nbsp;
+																					<span class='label label-info' id="upload-file-info"></span>
+																					<button class="pull-right btn btn-info" type="submit"><span class="glyphicon glyphicon-send"></span>Post</button>
+																				</div>
+
+																				<!--<input type="file" 
+																					class="choose-file" name="upload_lecture" size="30"  onchange="chooseFile()" 
+																					id="upload_lecture" accept="*" class="pull-left"/>-->
+
+																				
+																			</div>
+
 																	</form>
 																</div>
 														
@@ -191,13 +217,13 @@
 															<div class="panel-footer">
 																<form action="" method="post" name="download">
 																<?php echo '<div>
-																	<a href="#"><img src="'.$display['file_path'].$display['file'].'" class="img-thumbnail img-responsive post-lecture-image">
+																	<a><img src="'.$display['file_path'].$display['file'].'" class="img-thumbnail post-lecture-image">
 														
-																	<p class="pull-left"><span class="glyphicon glyphicon-paperclip"></span>'.$display['file'].'</p>
+																	<p class="pull-right"><span class="glyphicon glyphicon-paperclip"></span>'.$display['file'].'</p>
 																					
 																	<input name="file_name" value="'.$display['file'].'" type="hidden"/>
 																
-																	<button class="pull-right btn btn-primary" type="submit">Download File <span class="glyphicon glyphicon-save"></span></button>
+																	<button class=" btn btn-primary" type="submit">Download File <span class="glyphicon glyphicon-save"></span></button>
 																			</a>
 																		</div>	
 																';?>
@@ -262,7 +288,6 @@ $(function () {
 })
 </script>
 
-				
 	</body>
     
 
