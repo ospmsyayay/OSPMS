@@ -23,6 +23,7 @@ create table teacher(
 
 teacherID varchar(16) not null,
 t_position varchar(20),
+image varchar(100),
 constraint PK_teacher primary key (teacherID),
 constraint FK_teacher foreign key (teacherID) references registration(reg_id)
 );
@@ -45,6 +46,7 @@ student_lrn varchar(16) not null,
 grade_level varchar(10),
 section varchar(20),
 parentID varchar(16),
+image varchar(100),
 constraint PK_student primary key (student_lrn),
 constraint FK1_student foreign key (student_lrn) references registration(reg_id),
 constraint FK2_student foreign key (parentID) references parent(parentID)

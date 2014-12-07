@@ -215,11 +215,28 @@ include "model/get_post.php";
 			if(isset($_POST['file_name']))
 			{
 				$file = $_POST['file_name'];
-				$mime=get_mime($file);
-				header('Content-type: '.$mime.'');
-				header('Content-Disposition: attachment; filename='.$file.'');
-				readfile('model/uploaded_files/'.$file.'');
-				exit();
+				$path = 'model/uploaded_files/'.$file;
+
+				if(!is_file($path))
+				{
+					echo "<script>alert('File not found.('".$path."')')</script>";
+				}
+				elseif (is_dir($path))
+				{
+					echo "<script>alert('Cannot download folder')</script>";
+				}
+				else
+				{
+					$mime=get_mime($file);
+					//header('Content-type: '.$mime.'');
+					//header('Content-Disposition: attachment; filename='.$file.'');
+					//readfile('model/uploaded_files/'.$file.'');
+					//exit();
+
+					send_download($path,$mime);
+				}
+
+				
 			}
 			
 		}
@@ -415,40 +432,63 @@ function get_mime ($filename)
 	switch($extension)
 	{
 
-		case 'doc':$mime='application/msword';
-		case 'pdf':$mime='application/pdf';
-		/*case 'xls':$mime='application/vnd.ms-excel';
-		case 'xlsb':$mime='application/vnd.ms-excel.addin.macroenabled.12';
-		case 'xlsm':$mime='application/vnd.ms-excel.sheet.macroenabled.12';
-		case 'xltm':$mime='application/vnd.ms-excel.template.macroenabled.12';
-		case 'ppt':$mime='application/vnd.ms-powerpoint';
-		case 'ppam':$mime='application/vnd.ms-powerpoint.addin.macroenabled.12';
-		case 'pptm':$mime='application/vnd.ms-powerpoint.presentation.macroenabled.12';
-		case 'sldm':$mime='application/vnd.ms-powerpoint.slide.macroenabled.12';
-		case 'ppsm':$mime='application/vnd.ms-powerpoint.slideshow.macroenabled.12';
-		case 'potm':$mime='application/vnd.ms-powerpoint.template.macroenabled.12';
-		case 'docm':$mime='application/vnd.ms-word.document.macroenabled.12';
-		case 'dotm':$mime='application/vnd.ms-word.template.macroenabled.12';
-		case 'pptx':$mime='application/vnd.openxmlformats-officedocument.presentationml.presentation';
-		case 'sldx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slide';
-		case 'ppsx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slideshow';
-		case 'potx':$mime='application/vnd.openxmlformats-officedocument.presentationml.template';
-		case 'xlsx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';		
-		case 'xltx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.template';
-		case 'docx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-		case 'dotx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.template';
-		case '7z':$mime='application/x-7z-compressed';
-		case 'swf':$mime='application/x-shockwave-flash';
-		case 'zip':$mime='application/zip';
-		*/
+		case 'doc':$mime='application/msword';break;
+		case 'pdf':$mime='application/pdf';break;
+		case 'xls':$mime='application/vnd.ms-excel';break;
+		case 'xlsb':$mime='application/vnd.ms-excel.addin.macroenabled.12';break;
+		case 'xlsm':$mime='application/vnd.ms-excel.sheet.macroenabled.12';break;
+		case 'xltm':$mime='application/vnd.ms-excel.template.macroenabled.12';break;
+		case 'ppt':$mime='application/vnd.ms-powerpoint';break;
+		case 'ppam':$mime='application/vnd.ms-powerpoint.addin.macroenabled.12';break;
+		case 'pptm':$mime='application/vnd.ms-powerpoint.presentation.macroenabled.12';break;
+		case 'sldm':$mime='application/vnd.ms-powerpoint.slide.macroenabled.12';break;
+		case 'ppsm':$mime='application/vnd.ms-powerpoint.slideshow.macroenabled.12';break;
+		case 'potm':$mime='application/vnd.ms-powerpoint.template.macroenabled.12';break;
+		case 'docm':$mime='application/vnd.ms-word.document.macroenabled.12';break;
+		case 'dotm':$mime='application/vnd.ms-word.template.macroenabled.12';break;
+		case 'pptx':$mime='application/vnd.openxmlformats-officedocument.presentationml.presentation';break;
+		case 'sldx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slide';break;
+		case 'ppsx':$mime='application/vnd.openxmlformats-officedocument.presentationml.slideshow';break;
+		case 'potx':$mime='application/vnd.openxmlformats-officedocument.presentationml.template';break;
+		case 'xlsx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';break;		
+		case 'xltx':$mime='application/vnd.openxmlformats-officedocument.spreadsheetml.template';break;
+		case 'docx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.document';break;
+		case 'dotx':$mime='application/vnd.openxmlformats-officedocument.wordprocessingml.template';break;
+		case '7z':$mime='application/x-7z-compressed';break;
+		case 'swf':$mime='application/x-shockwave-flash';break;
+		case 'zip':$mime='application/zip';break;
 		case 'jpeg':
-		case 'jpg':$mime='image/jpeg';
-		case 'gif':$mime='image/gif';
-		case 'png':$mime='image/png';
-
+		case 'jpg':$mime='image/jpeg';break;
+		case 'gif':$mime='image/gif';break;
+		case 'png':$mime='image/png';break;
+	
 	}
 
 	return $mime;
+}
+
+function send_download($file,$mime)
+{
+    $basename = basename($file);
+    $length   = sprintf("%u", filesize($file));
+
+    
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: '.$mime.'');
+    header('Content-Disposition: attachment; filename="' . $basename . '"');
+    header('Content-Transfer-Encoding: binary');
+    header('Connection: Keep-Alive');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Pragma: public');
+    header('Content-Length: ' . $length);
+
+    ob_clean();
+	flush();
+	
+    set_time_limit(0);
+    readfile($file);
 }
 
 function tpage_progress()
