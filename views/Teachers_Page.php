@@ -183,6 +183,7 @@
 
 						
 					</div><!--right-column-fixed-->
+					<div class="post-separator"></div>
 					<div id="post-title-fixed">
 						<div id="post-title"><span class="glyphicon glyphicon-flag"></span>Latest Post</div>
 					</div>
@@ -206,20 +207,99 @@
 														</div>
 
 														<div class="panel-body">
-															<h5 class="post-teacher"><span class="glyphicon glyphicon-pushpin pull-right"></span><?php echo $display['message']; ?> </h5>
+															<h4 class="post-teacher"><?php echo $display['message']; ?></h4><span class="glyphicon glyphicon-pushpin pull-right"></span>
 															
 														</div>
 
 														<?php 
 															if(    (!empty($display['file_path'])) and (!empty($display['file'])) )
 															{
+
 														?>
 															<div class="panel-footer">
 																<form action="" method="post" name="download">
-																<?php echo '<div>
-																	<a><img src="'.$display['file_path'].$display['file'].'" class="img-thumbnail post-lecture-image">
-														
-																	<p class="pull-right"><span class="glyphicon glyphicon-paperclip"></span>'.$display['file'].'</p>
+																<?php 
+
+																		$temp = explode(".",$display['file']);
+																		$nameoffile = $temp[0];
+																		$extension = end($temp);
+																if(
+																	($extension=='doc')||($extension=='docx')||($extension=='docm')||
+																	($extension=='docb')||($extension=='dotm')||
+																	($extension=='dotx')
+																  )	
+																  {
+
+																  	echo '<div><a><img src="views/res/word.png" class="img-thumbnail post-lecture-image">';
+																  }
+
+																else if ($extension=='pdf') 
+																{
+																	echo '<div><a><img src="views/res/adobe.png" class="img-thumbnail post-lecture-image">';
+																}	
+
+																else if(
+																 	($extension=='xls')||($extension=='xlsx')||($extension=='xlsm')
+																 	||($extension=='xltx')||($extension=='xltm')||($extension=='xlsb')
+																 	)
+																  {
+
+
+																  		echo '<div><a><img src="views/res/excel.png" class="img-thumbnail post-lecture-image">';
+																  }
+																else if
+																  (	
+																  	($extension=='ppt')||($extension=='pptx')||($extension=='pptm')||($extension=='potx')||
+																  	($extension=='potm')||($extension=='ppam')||($extension=='ppsx')||($extension=='ppsm')||
+																  	($extension=='sldx')||($extension=='sldm')
+																  )
+																{
+
+																		echo '<div><a><img src="views/res/powerpoint.png" class="img-thumbnail post-lecture-image">';
+																}
+
+																else if
+																  (	
+																  	$extension=='7z'
+																  )
+																{
+																		echo '<div><a><img src="views/res/7z.png" class="img-thumbnail post-lecture-image">';
+
+																}
+
+																else if(
+																	$extension=='rar'
+																   )
+																{
+
+																		echo '<div><a><img src="views/res/rar.jpg" class="img-thumbnail post-lecture-image">';
+																}	
+
+																else if(
+																	$extension=='swf'
+																   )
+																{
+
+																		echo '<div><a><img src="views/res/swf.jpg" class="img-thumbnail post-lecture-image">';
+																}
+
+																else if(
+																	$extension=='zip'
+
+																   )
+																{
+																		echo '<div><a><img src="views/res/zip.jpg" class="img-thumbnail post-lecture-image">';
+																}
+
+																else
+																{
+																	echo '<div><a><img src="'.$display['file_path'].$display['file'].'" class="img-thumbnail post-lecture-image">';
+																}
+
+
+
+
+																echo '<p class="pull-right"><span class="glyphicon glyphicon-paperclip"></span>'.$display['file'].'</p>
 																					
 																	<input name="file_name" value="'.$display['file'].'" type="hidden"/>
 																

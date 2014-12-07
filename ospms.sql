@@ -282,7 +282,7 @@ CREATE TABLE `post_lecture` (
 
 LOCK TABLES `post_lecture` WRITE;
 /*!40000 ALTER TABLE `post_lecture` DISABLE KEYS */;
-INSERT INTO `post_lecture` VALUES ('MT1411303-789121',1,'2014-12-06 21:21:58','Image','model/uploaded_files/','Koala.jpg'),('MT1411303-789121',1,'2014-12-06 22:21:59','Adobe','model/uploaded_files/','Music Composition for Dummies.pdf'),('MT1411303-789121',1,'2014-12-06 23:21:32','Microsoft','model/uploaded_files/','ERD.docx'),('MT1411303-789121',1,'2014-12-06 23:30:05','Powerpoint','model/uploaded_files/','SOFTWARE PROJECT MODELS.ppt'),('MT1411303-789121',1,'2014-12-07 00:14:11','OSPMS','model/uploaded_files/','OSPMS_FINAL.docx'),('MT1411303-789121',1,'2014-12-07 09:57:48','Memo','model/uploaded_files/','MEMORANDUM PUNCTUALITY_2014.doc'),('MT1411303-789121',1,'2014-12-07 11:50:07','K12','model/uploaded_files/','K12 Encoding Sheets .xlsx');
+INSERT INTO `post_lecture` VALUES ('MT1411303-789121',1,'2014-12-06 21:21:58','Image','model/uploaded_files/','Koala.jpg'),('MT1411303-789121',1,'2014-12-06 22:21:59','Adobe','model/uploaded_files/','Music Composition for Dummies.pdf'),('MT1411303-789121',1,'2014-12-06 23:21:32','Microsoft','model/uploaded_files/','ERD.docx'),('MT1411303-789121',1,'2014-12-06 23:30:05','Powerpoint','model/uploaded_files/','SOFTWARE PROJECT MODELS.ppt'),('MT1411303-789121',1,'2014-12-07 00:14:11','OSPMS','model/uploaded_files/','OSPMS_FINAL.docx'),('MT1411303-789121',1,'2014-12-07 09:57:48','Memo','model/uploaded_files/','MEMORANDUM PUNCTUALITY_2014.doc'),('MT1411303-789121',1,'2014-12-07 11:50:07','K12','model/uploaded_files/','K12 Encoding Sheets .xlsx'),('MT1411303-789121',1,'2014-12-07 14:04:07','jquery','model/uploaded_files/','jQuery-Mobile-Bootstrap-Theme-master.zip'),('MT1411303-789121',1,'2014-12-07 14:05:23','gif','model/uploaded_files/','preview.gif'),('MT1411303-789121',1,'2014-12-07 14:06:19','swf','model/uploaded_files/','miniGolf.swf');
 /*!40000 ALTER TABLE `post_lecture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,4 +542,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-07 12:10:13
+-- Dump completed on 2014-12-07 14:07:15
